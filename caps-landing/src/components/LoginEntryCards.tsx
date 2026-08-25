@@ -5,11 +5,18 @@ import { Monitor, LayoutDashboard, ArrowRight } from "lucide-react";
  * LoginEntryCards
  *
  * Two clearly-distinguished login entry points:
- *  - Guard Console: blue accent — for security personnel at the gate.
- *  - Admin Dashboard: navy — for campus admin staff.
+ *  - Guard Console: access-control blue (--color-accent)
+ *  - Admin Dashboard: institutional navy (--color-admin)
  *
- * NOTE: The `href` values below are placeholders pointing to the sibling apps.
- * Update them to the actual Guard Console and Admin Dashboard URLs once known.
+ * NOTE: href values are placeholders — update to actual app URLs once known.
+ *
+ * Design polish (ui-ux-pro-max pass):
+ *  - Hardcoded accentMuted hex values moved to CSS custom properties
+ *    (--color-accent-subtle, --color-admin-subtle) in globals.css
+ *  - Hover lift via shared .card-interactive utility (motion token, no bounce)
+ *  - CTA buttons meet min 44px touch target (py-3 + text = ~44px)
+ *  - Icon stroke unified to 2; sized via --icon-md token
+ *  - Active state on CTA via :active scale (no layout shift per pro-rules)
  */
 
 const entries = [
@@ -20,9 +27,9 @@ const entries = [
     description:
       "For security staff stationed at campus gates. View live access results, monitor the current vehicle queue, and manually log visitor entries.",
     href: "/guard/login", // TODO: update to actual Guard Console URL
-    accent: "var(--color-accent)",       // #0369A1 — trust blue
-    accentText: "var(--color-on-accent)",
-    accentMuted: "#EFF6FF",
+    accentVar: "var(--color-accent)",
+    accentTextVar: "var(--color-on-accent)",
+    accentSubtleVar: "var(--color-accent-subtle)",
     icon: Monitor,
     cta: "Open Guard Console",
   },
@@ -33,9 +40,9 @@ const entries = [
     description:
       "For campus administrators. Review historical access logs, manage registered vehicles, configure gate rules, and export occupancy reports.",
     href: "/admin/login", // TODO: update to actual Admin Dashboard URL
-    accent: "var(--color-admin)",        // #1E3A5F — institutional navy
-    accentText: "var(--color-on-admin)",
-    accentMuted: "#EEF2F8",
+    accentVar: "var(--color-admin)",
+    accentTextVar: "var(--color-on-admin)",
+    accentSubtleVar: "var(--color-admin-subtle)",
     icon: LayoutDashboard,
     cta: "Open Admin Dashboard",
   },
@@ -45,7 +52,7 @@ export function LoginEntryCards() {
   return (
     <section
       aria-labelledby="login-heading"
-      className="border-t border-[var(--color-border)] bg-[var(--color-muted)]/40"
+      className="border-t border-[var(--color-border)] bg-[var(--color-muted)]/40 animate-section animate-section-delay-1"
     >
       <div className="mx-auto max-w-6xl px-[var(--spacing-gutter)] py-[var(--spacing-section)]">
         {/* Section heading */}
@@ -71,36 +78,42 @@ export function LoginEntryCards() {
               title,
               description,
               href,
-              accent,
-              accentText,
-              accentMuted,
+              accentVar,
+              accentTextVar,
+              accentSubtleVar,
               icon: Icon,
               cta,
             }) => (
               <article
                 key={id}
-                className="group flex flex-col rounded-[var(--radius-2xl)] border border-[var(--color-border)] bg-[var(--color-card)] shadow-[var(--shadow-card)] transition-shadow duration-200 hover:shadow-[var(--shadow-card-hover)]"
+                /* card-interactive: shared hover lift utility (motion token, no bounce) */
+                className="card-interactive group flex flex-col rounded-[var(--radius-2xl)] border border-[var(--color-border)] bg-[var(--color-card)] shadow-[var(--shadow-card)]"
                 aria-label={`${title} login`}
               >
-                {/* Card header stripe */}
+                {/* Card header stripe — color from token, not hardcoded hex */}
                 <div
                   className="rounded-t-[var(--radius-2xl)] px-6 py-5"
-                  style={{ backgroundColor: accentMuted }}
+                  style={{ backgroundColor: accentSubtleVar }}
                 >
+                  {/* Icon badge — decorative (beside visible heading text), aria-hidden */}
                   <span
                     className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-[var(--radius-lg)]"
-                    style={{ backgroundColor: accent }}
+                    style={{ backgroundColor: accentVar }}
                     aria-hidden="true"
                   >
+                    {/* strokeWidth 2 — unified per pro-rules stroke consistency */}
                     <Icon
-                      className="h-5 w-5"
-                      style={{ color: accentText }}
+                      style={{
+                        width: "var(--icon-md)",
+                        height: "var(--icon-md)",
+                        color: accentTextVar,
+                      }}
                       strokeWidth={2}
                     />
                   </span>
                   <p
                     className="text-xs font-semibold uppercase tracking-widest"
-                    style={{ color: accent }}
+                    style={{ color: accentVar }}
                   >
                     {role}
                   </p>
@@ -117,18 +130,32 @@ export function LoginEntryCards() {
                     {description}
                   </p>
 
-                  {/* CTA link styled as a button */}
+                  {/*
+                   * CTA button — min 44px touch target (py-3 gives ~44px total height).
+                   * :active scale via CSS to avoid layout shift (pro-rules).
+                   * hover:opacity-90 + transition use motion token durations.
+                   * aria-label gives descriptive accessible name (pro-rules).
+                   */}
                   <Link
                     href={href}
-                    className="mt-6 inline-flex cursor-pointer items-center justify-center gap-2 rounded-[var(--radius-lg)] px-5 py-2.5 text-sm font-semibold transition-opacity duration-200 hover:opacity-90 focus-visible:ring-2 focus-visible:ring-offset-2"
+                    className="mt-6 inline-flex cursor-pointer items-center justify-center gap-2 rounded-[var(--radius-lg)] px-5 py-3 text-sm font-semibold
+                      transition-opacity duration-[var(--motion-duration-base)] hover:opacity-90
+                      active:scale-[0.98] active:opacity-80
+                      focus-visible:ring-2 focus-visible:ring-offset-2"
                     style={{
-                      backgroundColor: accent,
-                      color: accentText,
+                      backgroundColor: accentVar,
+                      color: accentTextVar,
+                      transitionTimingFunction: "var(--motion-easing)",
                     }}
                     aria-label={`Sign in to the ${title}`}
                   >
                     {cta}
-                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    {/* ArrowRight — decorative beside CTA text, aria-hidden */}
+                    <ArrowRight
+                      style={{ width: "var(--icon-sm)", height: "var(--icon-sm)" }}
+                      strokeWidth={2}
+                      aria-hidden="true"
+                    />
                   </Link>
                 </div>
               </article>
