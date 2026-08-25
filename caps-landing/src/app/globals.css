@@ -20,7 +20,7 @@
   --icon-stroke: 2;
 
   /* Color palette — Apple / Dribbble Premium Light Mode */
-  --color-background:      #FFFFFF;
+  --color-background:      #F5F5F7; /* Apple off-white so cards pop */
   --color-foreground:      #1D1D1F; /* Apple's deep dark gray for text */
 
   --color-primary:         #0066CC; /* Apple Blue (Light mode safe) */
@@ -40,13 +40,13 @@
   --color-admin-subtle:    rgba(94, 92, 230, 0.1);
   --color-on-admin:        #FFFFFF;
 
-  --color-card:            rgba(255, 255, 255, 0.7); /* Frosted white glass */
+  --color-card:            rgba(255, 255, 255, 0.95); /* Nearly solid white to contrast with F5F5F7 */
   --color-card-foreground: #1D1D1F;
 
   --color-muted:           rgba(0, 0, 0, 0.04);
   --color-muted-foreground:#86868B;
 
-  --color-border:          rgba(0, 0, 0, 0.06);
+  --color-border:          rgba(0, 0, 0, 0.08);
   --color-ring:            rgba(0, 102, 204, 0.3);
 
   --color-success:         #34C759;
@@ -63,9 +63,9 @@
   --radius-xl:  1.5rem;
   --radius-2xl: 2.5rem;
 
-  /* Shadow — Soft, elegant drop shadows for light mode glass */
-  --shadow-card:       0 8px 32px 0 rgba(0, 0, 0, 0.04), inset 0 1px 1px 0 rgba(255, 255, 255, 1);
-  --shadow-card-hover: 0 16px 48px 0 rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0,0,0,0.02), inset 0 1px 1px 0 rgba(255, 255, 255, 1);
+  /* Shadow — Slightly stronger to lift off the light background */
+  --shadow-card:       0 10px 40px -10px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
+  --shadow-card-hover: 0 20px 50px -10px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255, 255, 255, 1);
 
   /* Motion tokens — restrained, institutional (150–250ms, ease-out) */
   --motion-duration-fast:   150ms;
