@@ -61,7 +61,7 @@ export function HowItWorksSection() {
       <div className="mb-16 max-w-xl">
         <h2
           id="how-it-works-heading"
-          className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
+          className="text-4xl font-extrabold tracking-tight text-[var(--color-foreground)] sm:text-5xl"
         >
           How it works
         </h2>
@@ -83,7 +83,7 @@ export function HowItWorksSection() {
             {/* Connector line — glowing Apple Blue */}
             {index < steps.length - 1 && (
               <span
-                className="absolute left-[calc(2rem+1px)] top-8 hidden h-[2px] w-[calc(100%+3rem)] bg-gradient-to-r from-[var(--color-primary)]/50 to-[var(--color-admin)]/10 lg:block"
+                className="absolute left-[calc(2rem+1px)] top-8 hidden h-[2px] w-[calc(100%+3rem)] bg-gradient-to-r from-[var(--color-primary)]/20 to-[var(--color-admin)]/5 lg:block"
                 aria-hidden="true"
               />
             )}
@@ -91,14 +91,14 @@ export function HowItWorksSection() {
             {/* Step icon badge — matches bento grid style */}
             <div className="mb-6 flex items-center gap-4 relative z-10">
               <span
-                className="flex h-16 w-16 shrink-0 items-center justify-center rounded-3xl bg-white/[0.05] shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] ring-1 ring-white/10
-                  transition-all duration-500 group-hover:bg-[var(--color-primary)]/20 group-hover:ring-[var(--color-primary)]/50 group-hover:shadow-[0_0_30px_rgba(41,151,255,0.2)]"
+                className="flex h-16 w-16 shrink-0 items-center justify-center rounded-3xl bg-black/[0.03] shadow-[inset_0_1px_0_rgba(255,255,255,1)] ring-1 ring-black/5
+                  transition-all duration-500 group-hover:bg-[var(--color-primary)]/10 group-hover:ring-[var(--color-primary)]/30 group-hover:shadow-[0_0_20px_rgba(0,102,204,0.15)]"
                 aria-hidden="true"
               >
                 {/* --icon-lg for feature anchors; strokeWidth 1.5 for Apple crispness */}
                 <Icon
                   style={{ width: "var(--icon-lg)", height: "var(--icon-lg)" }}
-                  className="text-white"
+                  className="text-[var(--color-foreground)]"
                   strokeWidth={1.5}
                 />
               </span>
@@ -111,7 +111,7 @@ export function HowItWorksSection() {
             </div>
 
             {/* Text */}
-            <h3 className="mb-3 text-xl font-bold text-white">
+            <h3 className="mb-3 text-xl font-bold text-[var(--color-foreground)]">
               {title}
             </h3>
             <p className="text-base leading-relaxed text-[var(--color-secondary)]">
@@ -123,17 +123,17 @@ export function HowItWorksSection() {
 
       {/* No-payment clarification note */}
       <aside
-        className="mt-24 relative overflow-hidden rounded-[2.5rem] border border-[var(--color-border)] bg-[var(--color-card)] p-10 text-base text-[var(--color-secondary)] shadow-[var(--shadow-card)] backdrop-blur-3xl transition-all duration-500 hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-1 hover:border-white/20"
+        className="mt-24 relative overflow-hidden rounded-[2.5rem] border border-[var(--color-border)] bg-[var(--color-card)] p-10 text-base text-[var(--color-secondary)] shadow-[var(--shadow-card)] backdrop-blur-3xl transition-all duration-500 hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-1 hover:border-black/10"
         role="note"
         aria-label="Scope note"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-admin)]/5 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)]/5 to-[var(--color-admin)]/5 pointer-events-none" />
         <div className="relative z-10 flex items-start sm:items-center gap-5">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[var(--color-primary)]/20 text-[var(--color-primary)] ring-1 ring-[var(--color-primary)]/50 shadow-[0_0_20px_rgba(41,151,255,0.2)]">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[var(--color-primary)]/10 text-[var(--color-primary)] ring-1 ring-[var(--color-primary)]/30 shadow-[0_0_15px_rgba(0,102,204,0.1)]">
             <ClipboardList className="h-6 w-6" strokeWidth={1.5} />
           </div>
           <p className="leading-relaxed">
-            <strong className="text-white font-bold">Note:</strong>{" "}
+            <strong className="text-[var(--color-foreground)] font-bold">Note:</strong>{" "}
             CAPS is an access and occupancy record system only. It does not handle
             fees, tolls, or any form of payment or billing.
           </p>

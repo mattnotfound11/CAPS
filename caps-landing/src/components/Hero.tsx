@@ -88,13 +88,13 @@ export function Hero() {
       className="relative mx-auto w-full max-w-6xl px-[var(--spacing-gutter)] py-20 lg:py-32 animate-section overflow-hidden"
     >
       {/* Apple-style deep glowing background mesh */}
-      <div className="absolute left-1/2 top-0 -z-10 h-[800px] w-[1200px] -translate-x-1/2 rounded-[100%] bg-[var(--color-primary)] opacity-15 blur-[120px] pointer-events-none" />
-      <div className="absolute left-1/2 top-0 -z-10 h-[400px] w-[600px] -translate-x-1/2 rounded-[100%] bg-[var(--color-admin)] opacity-20 blur-[100px] pointer-events-none animate-flare" />
+      <div className="absolute left-1/2 top-0 -z-10 h-[800px] w-[1200px] -translate-x-1/2 rounded-[100%] bg-[var(--color-primary)] opacity-[0.06] blur-[120px] pointer-events-none" />
+      <div className="absolute left-1/2 top-0 -z-10 h-[400px] w-[600px] -translate-x-1/2 rounded-[100%] bg-[var(--color-admin)] opacity-10 blur-[100px] pointer-events-none animate-flare" />
       
       {/* Centered Hero Content */}
       <div className="mx-auto flex flex-col items-center text-center max-w-4xl relative z-10">
         {/* Eyebrow */}
-        <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-white/[0.03] px-5 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-primary)] shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-2xl">
+        <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-white/50 px-5 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-primary)] shadow-sm backdrop-blur-2xl">
           <span className="relative flex h-2 w-2">
             <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-primary)] shadow-[0_0_8px_var(--color-primary)]"></span>
           </span>
@@ -104,7 +104,7 @@ export function Hero() {
         {/* Headline - Massive Apple typography */}
         <h1
           id="hero-heading"
-          className="text-6xl font-extrabold leading-[1.05] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/40 sm:text-7xl lg:text-[5.5rem]"
+          className="text-6xl font-extrabold leading-[1.05] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-black via-black to-black/50 sm:text-7xl lg:text-[5.5rem]"
         >
           Secure access.
           <br />
@@ -120,7 +120,7 @@ export function Hero() {
         <div className="mt-12 flex flex-col items-center justify-center gap-6 sm:flex-row">
           <Link
             href="#login-heading"
-            className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-white text-black px-10 py-4 text-lg font-bold shadow-[0_0_40px_rgba(255,255,255,0.2)] transition-all duration-[var(--motion-duration-base)] hover:scale-105 hover:bg-[var(--color-primary)] hover:text-white hover:shadow-[0_0_60px_rgba(41,151,255,0.4)] active:scale-95"
+            className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-[var(--color-foreground)] text-white px-10 py-4 text-lg font-bold shadow-lg transition-all duration-[var(--motion-duration-base)] hover:scale-105 hover:bg-[var(--color-primary)] hover:shadow-[0_0_40px_rgba(41,151,255,0.3)] active:scale-95"
           >
             Access Consoles
             <ArrowRight className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
@@ -141,22 +141,22 @@ export function Hero() {
             style={{ animationDelay: `${(i + 1) * 100}ms` }}
           >
             {/* Minimalist neon gradient overlay on hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)]/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)]/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
             
             {/* Live Micro-animation injection */}
             {animation}
             
             <div className="relative z-10 pt-16 sm:pt-12">
               <span
-                className="mb-8 flex h-16 w-16 items-center justify-center rounded-3xl bg-white/[0.05] shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] ring-1 ring-white/10 group-hover:bg-[var(--color-primary)]/20 group-hover:ring-[var(--color-primary)]/50 transition-all duration-500"
+                className="mb-8 flex h-16 w-16 items-center justify-center rounded-3xl bg-black/[0.03] shadow-[inset_0_1px_0_rgba(255,255,255,1)] ring-1 ring-black/5 group-hover:bg-[var(--color-primary)]/10 group-hover:ring-[var(--color-primary)]/30 transition-all duration-500"
                 aria-hidden="true"
               >
                 <Icon
-                  className="h-8 w-8 text-white"
+                  className="h-8 w-8 text-[var(--color-foreground)]"
                   strokeWidth={1.5}
                 />
               </span>
-              <h3 className="text-2xl font-bold tracking-tight text-white">
+              <h3 className="text-2xl font-bold tracking-tight text-[var(--color-foreground)]">
                 {label}
               </h3>
               <p className="mt-4 text-base font-medium leading-relaxed text-[var(--color-secondary)] max-w-[85%]">
