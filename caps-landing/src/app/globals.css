@@ -19,35 +19,35 @@
   /* Stroke weight token — all icons use this (pro-rules: stroke consistency) */
   --icon-stroke: 2;
 
-  /* Color palette — Research Lab / University (confirmed best match) */
-  --color-background:      #F8FAFC;
-  --color-foreground:      #0F172A;
+  /* Color palette — Sleek Monochrome (Zinc/Slate) for premium aesthetic */
+  --color-background:      #FFFFFF;
+  --color-foreground:      #09090B;
 
-  --color-primary:         #1E3A5F;   /* institutional navy */
-  --color-primary-hover:   #162d4a;
+  --color-primary:         #09090B;   /* Zinc 950 */
+  --color-primary-hover:   #27272A;   /* Zinc 800 */
   --color-on-primary:      #FFFFFF;
 
-  --color-secondary:       #2563EB;   /* action blue / eyebrow */
+  --color-secondary:       #71717A;   /* Zinc 500 for secondary text/icons */
   --color-on-secondary:    #FFFFFF;
 
-  /* Guard Console: access-control blue */
-  --color-accent:          #0369A1;
-  --color-accent-subtle:   #EFF6FF;   /* was hardcoded #EFF6FF in LoginEntryCards */
+  /* Guard Console */
+  --color-accent:          #09090B;
+  --color-accent-subtle:   #F4F4F5;   /* Zinc 100 */
   --color-on-accent:       #FFFFFF;
 
-  /* Admin Dashboard: institutional navy (same as primary) */
-  --color-admin:           #1E3A5F;
-  --color-admin-subtle:    #EEF2F8;   /* was hardcoded #EEF2F8 in LoginEntryCards */
+  /* Admin Dashboard */
+  --color-admin:           #27272A;   /* Slightly lighter than primary to differentiate */
+  --color-admin-subtle:    #FAFAFA;   /* Zinc 50 */
   --color-on-admin:        #FFFFFF;
 
   --color-card:            #FFFFFF;
-  --color-card-foreground: #0F172A;
+  --color-card-foreground: #09090B;
 
-  --color-muted:           #E9EEF5;
-  --color-muted-foreground:#475569;
+  --color-muted:           #F4F4F5;   /* Zinc 100 */
+  --color-muted-foreground:#71717A;   /* Zinc 500 */
 
-  --color-border:          #CBD5E1;
-  --color-ring:            #1E3A5F;
+  --color-border:          #E4E4E7;   /* Zinc 200 */
+  --color-ring:            #09090B;
 
   --color-success:         #15803D;
   --color-success-bg:      #DCFCE7;

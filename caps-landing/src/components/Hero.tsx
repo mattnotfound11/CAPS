@@ -87,16 +87,13 @@ export function Hero() {
       aria-labelledby="hero-heading"
       className="relative mx-auto w-full max-w-6xl px-[var(--spacing-gutter)] py-20 lg:py-32 animate-section overflow-hidden"
     >
-      {/* Dynamic background flare */}
-      <div className="absolute left-1/2 top-0 -z-10 h-[500px] w-[800px] rounded-[100%] bg-[var(--color-secondary)] blur-[100px] animate-flare pointer-events-none" />
-      
       {/* Centered Hero Content */}
       <div className="mx-auto flex flex-col items-center text-center max-w-3xl">
         {/* Eyebrow */}
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-card)]/80 px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-primary)] shadow-sm backdrop-blur-md">
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-card)]/80 px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-secondary)] shadow-sm backdrop-blur-md">
           <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-secondary)] opacity-75"></span>
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-secondary)]"></span>
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-primary)] opacity-75"></span>
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-primary)]"></span>
           </span>
           Live Environment Active
         </div>
@@ -108,7 +105,7 @@ export function Hero() {
         >
           Secure access.
           <br />
-          <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] bg-clip-text text-transparent">
             Precision control.
           </span>
         </h1>
