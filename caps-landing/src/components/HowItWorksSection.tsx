@@ -61,12 +61,12 @@ export function HowItWorksSection() {
       <div className="mb-12 max-w-xl">
         <h2
           id="how-it-works-heading"
-          className="text-2xl font-bold tracking-tight text-[var(--color-foreground)] sm:text-3xl"
+          className="text-2xl font-bold font-mono tracking-tight text-[var(--color-foreground)] sm:text-3xl uppercase"
         >
-          How it works
+          // Sequence Protocol
         </h2>
-        <p className="mt-3 text-[var(--color-muted-foreground)]">
-          From card tap to logged record — the full CAPS flow in four steps.
+        <p className="mt-3 font-mono text-sm text-[var(--color-muted-foreground)]">
+          &gt; Execution flow for physical access request via RFID hardware.
         </p>
       </div>
 
@@ -78,32 +78,31 @@ export function HowItWorksSection() {
         {steps.map(({ step, icon: Icon, title, description }, index) => (
           <li
             key={step}
-            className="relative flex flex-col"
+            className="relative flex flex-col group"
           >
-            {/* Connector line — uses border token, hidden on last item */}
+            {/* Connector line */}
             {index < steps.length - 1 && (
               <span
-                className="absolute left-[calc(1.75rem+1px)] top-7 hidden h-px w-[calc(100%+2rem)] bg-[var(--color-border)] lg:block"
+                className="absolute left-[calc(1.75rem+1px)] top-7 hidden h-[2px] w-[calc(100%+2rem)] bg-gradient-to-r from-[var(--color-primary)]/40 to-transparent lg:block"
                 aria-hidden="true"
               />
             )}
 
-            {/* Step icon badge — decorative (beside visible step title), aria-hidden */}
-            <div className="mb-4 flex items-center gap-3">
+            {/* Step icon badge */}
+            <div className="mb-6 flex items-center gap-3 relative z-10">
               <span
-                className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-[var(--color-border)] bg-[var(--color-card)]
-                  transition-colors duration-[var(--motion-duration-base)] hover:border-[var(--color-primary)] hover:bg-[var(--color-muted)]"
+                className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-card)] backdrop-blur-md
+                  transition-all duration-300 group-hover:border-[var(--color-primary)]/60 group-hover:bg-[var(--color-primary)]/10 group-hover:shadow-[0_0_15px_rgba(0,240,255,0.2)]"
                 aria-hidden="true"
               >
-                {/* --icon-lg for feature anchors; strokeWidth 2 unified per pro-rules */}
                 <Icon
                   style={{ width: "var(--icon-lg)", height: "var(--icon-lg)" }}
                   className="text-[var(--color-primary)]"
-                  strokeWidth={2}
+                  strokeWidth={1.5}
                 />
               </span>
               <span
-                className="font-mono text-xs font-semibold text-[var(--color-muted-foreground)]"
+                className="font-mono text-sm font-bold text-[var(--color-primary)] tracking-widest bg-[var(--color-primary)]/10 px-2 py-0.5 rounded border border-[var(--color-primary)]/20"
                 aria-label={`Step ${step}`}
               >
                 {step}
@@ -111,7 +110,7 @@ export function HowItWorksSection() {
             </div>
 
             {/* Text */}
-            <h3 className="mb-2 text-base font-semibold text-[var(--color-foreground)]">
+            <h3 className="mb-2 text-lg font-bold font-mono uppercase text-[var(--color-foreground)]">
               {title}
             </h3>
             <p className="text-sm leading-relaxed text-[var(--color-muted-foreground)]">
@@ -123,13 +122,13 @@ export function HowItWorksSection() {
 
       {/* No-payment clarification note */}
       <aside
-        className="mt-12 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-card)] px-5 py-4 text-sm text-[var(--color-muted-foreground)]"
+        className="mt-16 relative overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-[var(--color-card)] backdrop-blur-xl px-6 py-5 text-sm text-[var(--color-muted-foreground)] shadow-[var(--shadow-card)]"
         role="note"
         aria-label="Scope note"
       >
-        <strong className="text-[var(--color-foreground)]">Note:</strong>{" "}
-        CAPS is an access and occupancy record system only. It does not handle
-        fees, tolls, or any form of payment or billing.
+        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(6,182,212,0.03)_50%,transparent_75%)] bg-[length:250%_250%] animate-flare pointer-events-none" />
+        <strong className="text-[var(--color-primary)] font-mono uppercase tracking-widest">System Warning:</strong>{" "}
+        CAPS is an access and occupancy telemetry system only. It does not interface with payment gateways or billing modules.
       </aside>
     </section>
   );

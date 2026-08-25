@@ -52,25 +52,30 @@ export function LoginEntryCards() {
   return (
     <section
       aria-labelledby="login-heading"
-      className="border-t border-[var(--color-border)] bg-[var(--color-muted)]/40 animate-section animate-section-delay-1"
+      className="relative border-t border-[var(--color-border)]/50 bg-[var(--color-muted)]/20 animate-section animate-section-delay-1 overflow-hidden"
     >
-      <div className="mx-auto max-w-6xl px-[var(--spacing-gutter)] py-[var(--spacing-section)]">
+      {/* Cyber grid accent overlay */}
+      <div 
+        className="absolute inset-0 opacity-20 pointer-events-none bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:16px_16px]"
+      />
+
+      <div className="relative mx-auto max-w-6xl px-[var(--spacing-gutter)] py-[var(--spacing-section)] z-10">
         {/* Section heading */}
-        <div className="mb-10 max-w-xl">
+        <div className="mb-12 max-w-xl">
           <h2
             id="login-heading"
-            className="text-2xl font-bold tracking-tight text-[var(--color-foreground)] sm:text-3xl"
+            className="text-3xl font-extrabold tracking-tight text-[var(--color-foreground)] sm:text-4xl"
           >
-            Sign in to CAPS
+            Access Terminals
           </h2>
-          <p className="mt-3 text-[var(--color-muted-foreground)]">
-            Select your role to access the appropriate console. Both interfaces
-            are part of the same CAPS system.
+          <p className="mt-4 font-mono text-sm text-[var(--color-muted-foreground)]">
+            &gt; Select authorization level. <br />
+            &gt; Identity credentials required for all entry points.
           </p>
         </div>
 
         {/* Cards grid */}
-        <div className="grid gap-5 sm:grid-cols-2 lg:max-w-3xl">
+        <div className="grid gap-6 sm:grid-cols-2 lg:max-w-4xl">
           {entries.map(
             ({
               id,
@@ -86,75 +91,63 @@ export function LoginEntryCards() {
             }) => (
               <article
                 key={id}
-                /* card-interactive: shared hover lift utility (motion token, no bounce) */
-                className="card-interactive group flex flex-col rounded-[var(--radius-2xl)] border border-[var(--color-border)] bg-[var(--color-card)] shadow-[var(--shadow-card)]"
+                className="group relative flex flex-col rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-[var(--color-card)] backdrop-blur-xl shadow-[var(--shadow-card)] transition-all duration-300 hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-1 overflow-hidden"
                 aria-label={`${title} login`}
               >
-                {/* Card header stripe — color from token, not hardcoded hex */}
-                <div
-                  className="rounded-t-[var(--radius-2xl)] px-6 py-5"
-                  style={{ backgroundColor: accentSubtleVar }}
-                >
-                  {/* Icon badge — decorative (beside visible heading text), aria-hidden */}
-                  <span
-                    className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-[var(--radius-lg)]"
-                    style={{ backgroundColor: accentVar }}
-                    aria-hidden="true"
-                  >
-                    {/* strokeWidth 2 — unified per pro-rules stroke consistency */}
-                    <Icon
-                      style={{
-                        width: "var(--icon-md)",
-                        height: "var(--icon-md)",
-                        color: accentTextVar,
-                      }}
-                      strokeWidth={2}
-                    />
-                  </span>
-                  <p
-                    className="text-xs font-semibold uppercase tracking-widest"
-                    style={{ color: accentVar }}
-                  >
-                    {role}
-                  </p>
-                  <h3
-                    className="mt-1 text-xl font-bold text-[var(--color-foreground)]"
-                  >
+                {/* Glowing neon top edge */}
+                <div 
+                  className="absolute top-0 left-0 h-1 w-full opacity-50 group-hover:opacity-100 transition-opacity"
+                  style={{ backgroundColor: accentVar, boxShadow: `0 0 10px ${accentVar}` }}
+                />
+
+                <div className="flex flex-col p-8 h-full">
+                  {/* Header */}
+                  <div className="mb-6 flex items-start justify-between">
+                    <span
+                      className="flex h-12 w-12 items-center justify-center rounded-[var(--radius-lg)] bg-black/20 border"
+                      style={{ borderColor: accentVar, color: accentVar, boxShadow: `0 0 15px ${accentSubtleVar}` }}
+                      aria-hidden="true"
+                    >
+                      <Icon
+                        style={{ width: "var(--icon-lg)", height: "var(--icon-lg)" }}
+                        strokeWidth={1.5}
+                      />
+                    </span>
+                    <p
+                      className="text-xs font-mono font-semibold uppercase tracking-widest px-2 py-1 rounded bg-black/20 border"
+                      style={{ color: accentVar, borderColor: `${accentVar}33` }}
+                    >
+                      {role}
+                    </p>
+                  </div>
+
+                  <h3 className="mb-2 text-2xl font-bold font-mono tracking-tight text-[var(--color-foreground)] uppercase">
                     {title}
                   </h3>
-                </div>
-
-                {/* Card body */}
-                <div className="flex flex-1 flex-col px-6 py-5">
-                  <p className="flex-1 text-sm leading-relaxed text-[var(--color-muted-foreground)]">
+                  
+                  <p className="mb-8 text-sm leading-relaxed text-[var(--color-muted-foreground)] flex-1">
                     {description}
                   </p>
 
-                  {/*
-                   * CTA button — min 44px touch target (py-3 gives ~44px total height).
-                   * :active scale via CSS to avoid layout shift (pro-rules).
-                   * hover:opacity-90 + transition use motion token durations.
-                   * aria-label gives descriptive accessible name (pro-rules).
-                   */}
+                  {/* CTA button */}
                   <Link
                     href={href}
-                    className="mt-6 inline-flex cursor-pointer items-center justify-center gap-2 rounded-[var(--radius-lg)] px-5 py-3 text-sm font-semibold
-                      transition-opacity duration-[var(--motion-duration-base)] hover:opacity-90
-                      active:scale-[0.98] active:opacity-80
-                      focus-visible:ring-2 focus-visible:ring-offset-2"
+                    className="mt-auto inline-flex items-center justify-center gap-2 rounded-[var(--radius-lg)] px-5 py-3 text-sm font-mono font-bold uppercase tracking-wider
+                      transition-all duration-300
+                      hover:brightness-110 active:scale-95"
                     style={{
-                      backgroundColor: accentVar,
-                      color: accentTextVar,
-                      transitionTimingFunction: "var(--motion-easing)",
+                      backgroundColor: `${accentVar}22`,
+                      color: accentVar,
+                      border: `1px solid ${accentVar}55`,
                     }}
                     aria-label={`Sign in to the ${title}`}
                   >
                     {cta}
-                    {/* ArrowRight — decorative beside CTA text, aria-hidden */}
                     <ArrowRight
                       style={{ width: "var(--icon-sm)", height: "var(--icon-sm)" }}
                       strokeWidth={2}
                       aria-hidden="true"
+                      className="transition-transform group-hover:translate-x-1"
                     />
                   </Link>
                 </div>

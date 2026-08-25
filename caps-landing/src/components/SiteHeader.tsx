@@ -11,32 +11,31 @@ import { ShieldCheck } from "lucide-react";
  */
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[var(--color-background)]/95 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-6xl items-center gap-3 px-[var(--spacing-gutter)] py-4">
-        {/* Logo mark — decorative beside visible "CAPS" text, aria-hidden */}
+    <header className="sticky top-0 z-40 border-b border-[var(--color-border)]/50 bg-[var(--color-background)]/80 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
+      <div className="mx-auto flex max-w-6xl items-center gap-4 px-[var(--spacing-gutter)] py-4">
+        {/* Logo mark */}
         <span
-          className="flex h-8 w-8 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-primary)]"
+          className="flex h-9 w-9 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/30 shadow-[0_0_15px_rgba(0,240,255,0.2)]"
           aria-hidden="true"
         >
-          {/* strokeWidth 2, --icon-md (20px) per pro-rules icon tokens */}
           <ShieldCheck
             style={{ width: "var(--icon-md)", height: "var(--icon-md)" }}
-            className="text-white"
-            strokeWidth={2}
+            className="text-[var(--color-primary)]"
+            strokeWidth={1.5}
           />
         </span>
 
         {/* Wordmark */}
-        <span className="text-base font-semibold tracking-tight text-[var(--color-foreground)]">
+        <span className="text-xl font-bold font-mono tracking-widest text-[var(--color-foreground)]">
           CAPS
         </span>
 
-        {/* Tagline — visual only, hidden on small screens */}
+        {/* Tagline */}
         <span
-          className="hidden text-xs text-[var(--color-muted-foreground)] sm:inline-block"
+          className="hidden text-xs font-mono text-[var(--color-primary)]/70 sm:inline-block ml-2 border-l border-[var(--color-border)] pl-4"
           aria-hidden="true"
         >
-          Campus Automated Parking System
+          [ TELEMETRY NETWORK ]
         </span>
       </div>
     </header>
