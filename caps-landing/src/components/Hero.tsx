@@ -87,77 +87,79 @@ export function Hero() {
       aria-labelledby="hero-heading"
       className="relative mx-auto w-full max-w-6xl px-[var(--spacing-gutter)] py-20 lg:py-32 animate-section overflow-hidden"
     >
+      {/* Apple-style deep glowing background mesh */}
+      <div className="absolute left-1/2 top-0 -z-10 h-[800px] w-[1200px] -translate-x-1/2 rounded-[100%] bg-[var(--color-primary)] opacity-15 blur-[120px] pointer-events-none" />
+      <div className="absolute left-1/2 top-0 -z-10 h-[400px] w-[600px] -translate-x-1/2 rounded-[100%] bg-[var(--color-admin)] opacity-20 blur-[100px] pointer-events-none animate-flare" />
+      
       {/* Centered Hero Content */}
-      <div className="mx-auto flex flex-col items-center text-center max-w-3xl">
+      <div className="mx-auto flex flex-col items-center text-center max-w-4xl relative z-10">
         {/* Eyebrow */}
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-card)]/80 px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-secondary)] shadow-sm backdrop-blur-md">
+        <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-white/[0.03] px-5 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-primary)] shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-2xl">
           <span className="relative flex h-2 w-2">
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-secondary)]/50"></span>
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-primary)] shadow-[0_0_8px_var(--color-primary)]"></span>
           </span>
           Interface Simulation
         </div>
 
-        {/* Headline */}
+        {/* Headline - Massive Apple typography */}
         <h1
           id="hero-heading"
-          className="text-5xl font-extrabold leading-[1.15] tracking-tight text-[var(--color-foreground)] sm:text-6xl lg:text-7xl"
+          className="text-6xl font-extrabold leading-[1.05] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/40 sm:text-7xl lg:text-[5.5rem]"
         >
           Secure access.
           <br />
-          <span className="bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] bg-clip-text text-transparent">
-            Precision control.
-          </span>
+          Precision control.
         </h1>
 
         {/* Sub-headline */}
-        <p className="mt-6 text-lg leading-relaxed text-[var(--color-muted-foreground)] sm:text-xl">
-          CAPS transforms existing campus IDs into a unified access and occupancy telemetry network. Validate vehicles, log events, and monitor capacity with zero friction.
+        <p className="mt-8 text-xl font-medium leading-relaxed text-[var(--color-secondary)] sm:text-2xl max-w-2xl">
+          Transform existing campus IDs into a unified access and occupancy telemetry network with zero friction.
         </p>
         
         {/* Action Area */}
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-center gap-6 sm:flex-row">
           <Link
             href="#login-heading"
-            className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-[var(--color-primary)] px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-[var(--color-primary)]/20 transition-all duration-[var(--motion-duration-base)] hover:bg-[var(--color-primary-hover)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+            className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-white text-black px-10 py-4 text-lg font-bold shadow-[0_0_40px_rgba(255,255,255,0.2)] transition-all duration-[var(--motion-duration-base)] hover:scale-105 hover:bg-[var(--color-primary)] hover:text-white hover:shadow-[0_0_60px_rgba(41,151,255,0.4)] active:scale-95"
           >
             Access Consoles
             <ArrowRight className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
           </Link>
-          <div className="flex items-center gap-2 text-sm font-medium text-[var(--color-muted-foreground)]">
+          <div className="flex items-center gap-2 text-sm font-medium text-[var(--color-secondary)]">
             <Lock className="h-4 w-4" strokeWidth={2} />
             Institutional access only
           </div>
         </div>
       </div>
 
-      {/* Bento Grid layout for capabilities with live telemetry micro-animations */}
-      <div className="mx-auto mt-24 grid max-w-5xl gap-4 md:grid-cols-3 lg:grid-cols-3 relative">
+      {/* Bento Grid layout for capabilities */}
+      <div className="mx-auto mt-32 grid max-w-5xl gap-6 md:grid-cols-3 lg:grid-cols-3 relative z-10">
         {capabilities.map(({ icon: Icon, label, desc, span, animation }, i) => (
           <div
             key={label}
-            className={`group animate-section relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-[var(--color-border)] bg-[var(--color-card)]/80 p-8 shadow-sm backdrop-blur-xl transition-all duration-300 hover:shadow-md hover:border-[var(--color-primary)]/30 ${span}`}
+            className={`group relative flex flex-col justify-between overflow-hidden rounded-[2.5rem] border border-[var(--color-border)] bg-[var(--color-card)] p-10 shadow-[var(--shadow-card)] backdrop-blur-3xl transition-all duration-500 hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-2 ${span}`}
             style={{ animationDelay: `${(i + 1) * 100}ms` }}
           >
-            {/* Minimalist gradient overlay on hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-secondary)]/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none" />
+            {/* Minimalist neon gradient overlay on hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)]/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
             
             {/* Live Micro-animation injection */}
             {animation}
             
-            <div className="relative z-10 pt-8 sm:pt-0">
+            <div className="relative z-10 pt-16 sm:pt-12">
               <span
-                className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--color-background)] shadow-inner ring-1 ring-[var(--color-border)]"
+                className="mb-8 flex h-16 w-16 items-center justify-center rounded-3xl bg-white/[0.05] shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] ring-1 ring-white/10 group-hover:bg-[var(--color-primary)]/20 group-hover:ring-[var(--color-primary)]/50 transition-all duration-500"
                 aria-hidden="true"
               >
                 <Icon
-                  className="h-6 w-6 text-[var(--color-primary)]"
-                  strokeWidth={2}
+                  className="h-8 w-8 text-white"
+                  strokeWidth={1.5}
                 />
               </span>
-              <h3 className="text-xl font-bold tracking-tight text-[var(--color-foreground)]">
+              <h3 className="text-2xl font-bold tracking-tight text-white">
                 {label}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-[var(--color-muted-foreground)] max-w-[80%]">
+              <p className="mt-4 text-base font-medium leading-relaxed text-[var(--color-secondary)] max-w-[85%]">
                 {desc}
               </p>
             </div>

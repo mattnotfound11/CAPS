@@ -19,53 +19,53 @@
   /* Stroke weight token — all icons use this (pro-rules: stroke consistency) */
   --icon-stroke: 2;
 
-  /* Color palette — Research Lab / University (confirmed best match) */
-  --color-background:      #F8FAFC;
-  --color-foreground:      #0F172A;
+  /* Color palette — Apple / Dribbble Premium Dark Mode */
+  --color-background:      #000000;
+  --color-foreground:      #F5F5F7; /* Apple's off-white */
 
-  --color-primary:         #1E3A5F;   /* institutional navy */
-  --color-primary-hover:   #162d4a;
+  --color-primary:         #2997FF; /* Apple Blue */
+  --color-primary-hover:   #147CE5;
   --color-on-primary:      #FFFFFF;
 
-  --color-secondary:       #2563EB;   /* action blue / eyebrow */
+  --color-secondary:       #86868B; /* Apple muted gray */
   --color-on-secondary:    #FFFFFF;
 
-  /* Guard Console: access-control blue */
-  --color-accent:          #0369A1;
-  --color-accent-subtle:   #EFF6FF;
+  /* Guard Console */
+  --color-accent:          #32D74B; /* Apple Green */
+  --color-accent-subtle:   rgba(50, 215, 75, 0.1);
   --color-on-accent:       #FFFFFF;
 
-  /* Admin Dashboard: institutional navy (same as primary) */
-  --color-admin:           #1E3A5F;
-  --color-admin-subtle:    #EEF2F8;
+  /* Admin Dashboard */
+  --color-admin:           #5E5CE6; /* Apple Indigo */
+  --color-admin-subtle:    rgba(94, 92, 230, 0.1);
   --color-on-admin:        #FFFFFF;
 
-  --color-card:            #FFFFFF;
-  --color-card-foreground: #0F172A;
+  --color-card:            rgba(255, 255, 255, 0.03); /* Glassmorphism base */
+  --color-card-foreground: #F5F5F7;
 
-  --color-muted:           #E9EEF5;
-  --color-muted-foreground:#475569;
+  --color-muted:           rgba(255, 255, 255, 0.05);
+  --color-muted-foreground:#86868B;
 
-  --color-border:          #CBD5E1;
-  --color-ring:            #1E3A5F;
+  --color-border:          rgba(255, 255, 255, 0.1);
+  --color-ring:            rgba(41, 151, 255, 0.5);
 
-  --color-success:         #15803D;
-  --color-success-bg:      #DCFCE7;
+  --color-success:         #32D74B;
+  --color-success-bg:      rgba(50, 215, 75, 0.15);
 
-  /* Spacing scale — 8dp rhythm (pro-rules) */
-  --spacing-section: clamp(3.5rem, 8vw, 6rem);
-  --spacing-gutter:  clamp(1rem, 4vw, 1.5rem);
+  /* Spacing scale */
+  --spacing-section: clamp(4rem, 10vw, 8rem);
+  --spacing-gutter:  clamp(1.5rem, 5vw, 2.5rem);
 
-  /* Border radius */
-  --radius-sm:  0.375rem;
-  --radius-md:  0.5rem;
-  --radius-lg:  0.75rem;
-  --radius-xl:  1rem;
-  --radius-2xl: 1.25rem;
+  /* Border radius - Apple goes round */
+  --radius-sm:  0.5rem;
+  --radius-md:  0.75rem;
+  --radius-lg:  1rem;
+  --radius-xl:  1.5rem;
+  --radius-2xl: 2.5rem;
 
-  /* Shadow — tinted to primary for brand consistency */
-  --shadow-card:       0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.04);
-  --shadow-card-hover: 0 6px 16px 0 rgb(30 58 95 / 0.12), 0 2px 6px -1px rgb(30 58 95 / 0.07);
+  /* Shadow — Deep, soft drop shadows + inset light catching for glass */
+  --shadow-card:       0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 1px 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-card-hover: 0 16px 48px 0 rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.1), inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
 
   /* Motion tokens — restrained, institutional (150–250ms, ease-out) */
   --motion-duration-fast:   150ms;
@@ -103,11 +103,11 @@ html {
 
 body {
   background-color: var(--color-background);
-  background-image: radial-gradient(circle at 2px 2px, var(--color-border) 1px, transparent 0);
-  background-size: 32px 32px;
   color: var(--color-foreground);
   font-family: var(--font-sans);
   min-height: 100vh;
+  /* Dribbble-style ultra-subtle noise texture overlay for depth */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
 }
 
 /* ── Focus styles (keyboard nav — pro-rules) ───────────────── */
