@@ -52,7 +52,7 @@ export function LoginEntryCards() {
   return (
     <section
       aria-labelledby="login-heading"
-      className="border-t border-[var(--color-border)] bg-[var(--color-muted)]/40 animate-section animate-section-delay-1"
+      className="border-t border-[var(--color-border)] bg-transparent animate-section animate-section-delay-1"
     >
       <div className="mx-auto max-w-6xl px-[var(--spacing-gutter)] py-[var(--spacing-section)]">
         {/* Section heading */}
@@ -83,34 +83,47 @@ export function LoginEntryCards() {
               accentSubtleVar,
               icon: Icon,
               cta,
-            }) => (
+            }, i) => (
               <article
                 key={id}
-                /* card-interactive: shared hover lift utility (motion token, no bounce) */
-                className="card-interactive group flex flex-col rounded-[var(--radius-2xl)] border border-[var(--color-border)] bg-[var(--color-card)] shadow-[var(--shadow-card)]"
+                className="group relative flex flex-col overflow-hidden rounded-[2rem] border border-[var(--color-border)] bg-[var(--color-card)]/80 shadow-sm backdrop-blur-xl transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-[var(--color-primary)]/30"
                 aria-label={`${title} login`}
               >
-                {/* Card header stripe — color from token, not hardcoded hex */}
+                {/* Minimalist gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-secondary)]/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none" />
+
+                {/* Card header stripe */}
                 <div
-                  className="rounded-t-[var(--radius-2xl)] px-6 py-5"
+                  className="px-8 pt-8 pb-6 relative z-10"
                   style={{ backgroundColor: accentSubtleVar }}
                 >
-                  {/* Icon badge — decorative (beside visible heading text), aria-hidden */}
-                  <span
-                    className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-[var(--radius-lg)]"
-                    style={{ backgroundColor: accentVar }}
-                    aria-hidden="true"
-                  >
-                    {/* strokeWidth 2 — unified per pro-rules stroke consistency */}
-                    <Icon
-                      style={{
-                        width: "var(--icon-md)",
-                        height: "var(--icon-md)",
-                        color: accentTextVar,
-                      }}
-                      strokeWidth={2}
-                    />
-                  </span>
+                  <div className="flex items-center justify-between mb-4">
+                    {/* Icon badge */}
+                    <span
+                      className="inline-flex h-12 w-12 items-center justify-center rounded-2xl shadow-inner ring-1 ring-black/5"
+                      style={{ backgroundColor: accentVar }}
+                      aria-hidden="true"
+                    >
+                      <Icon
+                        style={{
+                          width: "var(--icon-lg)",
+                          height: "var(--icon-lg)",
+                          color: accentTextVar,
+                        }}
+                        strokeWidth={2}
+                      />
+                    </span>
+                    
+                    {/* Tiny "live" UI detail: Status indicator */}
+                    <div className="flex items-center gap-1.5 rounded-full bg-white/50 px-2.5 py-1 shadow-sm border border-black/5">
+                      <span className="relative flex h-1.5 w-1.5">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-500"></span>
+                      </span>
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-foreground)]">Online</span>
+                    </div>
+                  </div>
+
                   <p
                     className="text-xs font-semibold uppercase tracking-widest"
                     style={{ color: accentVar }}
@@ -125,21 +138,15 @@ export function LoginEntryCards() {
                 </div>
 
                 {/* Card body */}
-                <div className="flex flex-1 flex-col px-6 py-5">
+                <div className="flex flex-1 flex-col px-8 pb-8 pt-2 relative z-10">
                   <p className="flex-1 text-sm leading-relaxed text-[var(--color-muted-foreground)]">
                     {description}
                   </p>
 
-                  {/*
-                   * CTA button — min 44px touch target (py-3 gives ~44px total height).
-                   * :active scale via CSS to avoid layout shift (pro-rules).
-                   * hover:opacity-90 + transition use motion token durations.
-                   * aria-label gives descriptive accessible name (pro-rules).
-                   */}
                   <Link
                     href={href}
-                    className="mt-6 inline-flex cursor-pointer items-center justify-center gap-2 rounded-[var(--radius-lg)] px-5 py-3 text-sm font-semibold
-                      transition-opacity duration-[var(--motion-duration-base)] hover:opacity-90
+                    className="mt-6 inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-sm font-semibold
+                      transition-all duration-[var(--motion-duration-base)] hover:opacity-90 hover:shadow-sm
                       active:scale-[0.98] active:opacity-80
                       focus-visible:ring-2 focus-visible:ring-offset-2"
                     style={{
@@ -150,7 +157,6 @@ export function LoginEntryCards() {
                     aria-label={`Sign in to the ${title}`}
                   >
                     {cta}
-                    {/* ArrowRight — decorative beside CTA text, aria-hidden */}
                     <ArrowRight
                       style={{ width: "var(--icon-sm)", height: "var(--icon-sm)" }}
                       strokeWidth={2}
