@@ -88,8 +88,12 @@ export function Hero() {
       className="relative mx-auto w-full max-w-6xl px-[var(--spacing-gutter)] py-20 lg:py-32 animate-section overflow-hidden"
     >
       {/* Apple-style deep glowing background mesh */}
-      <div className="absolute left-1/2 top-0 -z-10 h-[800px] w-[1200px] -translate-x-1/2 rounded-[100%] bg-[var(--color-primary)] opacity-[0.06] blur-[120px] pointer-events-none" />
-      <div className="absolute left-1/2 top-0 -z-10 h-[400px] w-[600px] -translate-x-1/2 rounded-[100%] bg-[var(--color-admin)] opacity-10 blur-[100px] pointer-events-none animate-flare" />
+      <div 
+        className="absolute left-1/2 top-[-200px] -z-10 h-[1000px] w-[1400px] -translate-x-1/2 pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse at center, rgba(0, 102, 204, 0.08) 0%, rgba(94, 92, 230, 0.04) 40%, transparent 70%)"
+        }}
+      />
       
       {/* Centered Hero Content */}
       <div className="mx-auto flex flex-col items-center text-center max-w-4xl relative z-10">
