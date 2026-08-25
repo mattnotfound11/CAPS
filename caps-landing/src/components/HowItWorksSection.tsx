@@ -80,19 +80,19 @@ export function HowItWorksSection() {
             key={step}
             className="relative flex flex-col"
           >
-            {/* Connector line — uses border token, hidden on last item */}
+            {/* Connector line — colored with accent to feel like an active flow */}
             {index < steps.length - 1 && (
               <span
-                className="absolute left-[calc(1.75rem+1px)] top-7 hidden h-px w-[calc(100%+2rem)] bg-[var(--color-border)] lg:block"
+                className="absolute left-[calc(1.5rem+1px)] top-6 hidden h-[2px] w-[calc(100%+2rem)] bg-gradient-to-r from-[var(--color-secondary)]/30 to-[var(--color-primary)]/10 lg:block"
                 aria-hidden="true"
               />
             )}
 
-            {/* Step icon badge — decorative (beside visible step title), aria-hidden */}
-            <div className="mb-4 flex items-center gap-3">
+            {/* Step icon badge — matches bento grid style */}
+            <div className="mb-4 flex items-center gap-4 relative z-10">
               <span
-                className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-[var(--color-border)] bg-[var(--color-card)]
-                  transition-colors duration-[var(--motion-duration-base)] hover:border-[var(--color-primary)] hover:bg-[var(--color-muted)]"
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[var(--color-background)] shadow-inner ring-1 ring-[var(--color-border)]
+                  transition-all duration-300 hover:shadow-md hover:ring-[var(--color-primary)]/50"
                 aria-hidden="true"
               >
                 {/* --icon-lg for feature anchors; strokeWidth 2 unified per pro-rules */}
@@ -103,7 +103,7 @@ export function HowItWorksSection() {
                 />
               </span>
               <span
-                className="font-mono text-xs font-semibold text-[var(--color-muted-foreground)]"
+                className="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-secondary)]"
                 aria-label={`Step ${step}`}
               >
                 {step}
@@ -123,13 +123,21 @@ export function HowItWorksSection() {
 
       {/* No-payment clarification note */}
       <aside
-        className="mt-12 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-card)] px-5 py-4 text-sm text-[var(--color-muted-foreground)]"
+        className="mt-16 relative overflow-hidden rounded-[2rem] border border-[var(--color-border)] bg-[var(--color-card)]/80 p-8 text-sm text-[var(--color-muted-foreground)] shadow-sm backdrop-blur-xl transition-all duration-300 hover:shadow-md"
         role="note"
         aria-label="Scope note"
       >
-        <strong className="text-[var(--color-foreground)]">Note:</strong>{" "}
-        CAPS is an access and occupancy record system only. It does not handle
-        fees, tolls, or any form of payment or billing.
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)]/5 to-transparent pointer-events-none" />
+        <div className="relative z-10 flex items-start sm:items-center gap-4">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
+            <ClipboardList className="h-5 w-5" strokeWidth={2} />
+          </div>
+          <p className="leading-relaxed">
+            <strong className="text-[var(--color-foreground)] font-semibold">Note:</strong>{" "}
+            CAPS is an access and occupancy record system only. It does not handle
+            fees, tolls, or any form of payment or billing.
+          </p>
+        </div>
       </aside>
     </section>
   );
