@@ -11,17 +11,18 @@ import { ShieldCheck } from "lucide-react";
  */
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-black/5 bg-white/70 backdrop-blur-3xl">
+    <header className="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[var(--color-background)]/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-[var(--spacing-gutter)] py-4">
-        {/* Logo mark */}
+        {/* Logo mark — decorative beside visible "CAPS" text, aria-hidden */}
         <span
-          className="flex h-8 w-8 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-primary)] shadow-[0_0_15px_rgba(0,102,204,0.3)]"
+          className="flex h-8 w-8 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-primary)]"
           aria-hidden="true"
         >
+          {/* strokeWidth 2, --icon-md (20px) per pro-rules icon tokens */}
           <ShieldCheck
             style={{ width: "var(--icon-md)", height: "var(--icon-md)" }}
             className="text-white"
-            strokeWidth={1.5}
+            strokeWidth={2}
           />
         </span>
 

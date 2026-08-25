@@ -19,53 +19,53 @@
   /* Stroke weight token — all icons use this (pro-rules: stroke consistency) */
   --icon-stroke: 2;
 
-  /* Color palette — Apple / Dribbble Premium Light Mode */
-  --color-background:      #F5F5F7; /* Apple off-white so cards pop */
-  --color-foreground:      #1D1D1F; /* Apple's deep dark gray for text */
+  /* Color palette — Research Lab / University (confirmed best match) */
+  --color-background:      #F8FAFC;
+  --color-foreground:      #0F172A;
 
-  --color-primary:         #0066CC; /* Apple Blue (Light mode safe) */
-  --color-primary-hover:   #004499;
+  --color-primary:         #1E3A5F;   /* institutional navy */
+  --color-primary-hover:   #162d4a;
   --color-on-primary:      #FFFFFF;
 
-  --color-secondary:       #86868B; /* Apple muted gray */
+  --color-secondary:       #2563EB;   /* action blue / eyebrow */
   --color-on-secondary:    #FFFFFF;
 
-  /* Guard Console */
-  --color-accent:          #34C759; /* Apple Green */
-  --color-accent-subtle:   rgba(52, 199, 89, 0.1);
+  /* Guard Console: access-control blue */
+  --color-accent:          #0369A1;
+  --color-accent-subtle:   #EFF6FF;   /* was hardcoded #EFF6FF in LoginEntryCards */
   --color-on-accent:       #FFFFFF;
 
-  /* Admin Dashboard */
-  --color-admin:           #5E5CE6; /* Apple Indigo */
-  --color-admin-subtle:    rgba(94, 92, 230, 0.1);
+  /* Admin Dashboard: institutional navy (same as primary) */
+  --color-admin:           #1E3A5F;
+  --color-admin-subtle:    #EEF2F8;   /* was hardcoded #EEF2F8 in LoginEntryCards */
   --color-on-admin:        #FFFFFF;
 
-  --color-card:            rgba(255, 255, 255, 0.95); /* Nearly solid white to contrast with F5F5F7 */
-  --color-card-foreground: #1D1D1F;
+  --color-card:            #FFFFFF;
+  --color-card-foreground: #0F172A;
 
-  --color-muted:           rgba(0, 0, 0, 0.04);
-  --color-muted-foreground:#86868B;
+  --color-muted:           #E9EEF5;
+  --color-muted-foreground:#475569;
 
-  --color-border:          rgba(0, 0, 0, 0.08);
-  --color-ring:            rgba(0, 102, 204, 0.3);
+  --color-border:          #CBD5E1;
+  --color-ring:            #1E3A5F;
 
-  --color-success:         #34C759;
-  --color-success-bg:      rgba(52, 199, 89, 0.15);
+  --color-success:         #15803D;
+  --color-success-bg:      #DCFCE7;
 
-  /* Spacing scale */
-  --spacing-section: clamp(4rem, 10vw, 8rem);
-  --spacing-gutter:  clamp(1.5rem, 5vw, 2.5rem);
+  /* Spacing scale — 8dp rhythm (pro-rules) */
+  --spacing-section: clamp(3.5rem, 8vw, 6rem);
+  --spacing-gutter:  clamp(1rem, 4vw, 1.5rem);
 
-  /* Border radius - Apple goes round */
-  --radius-sm:  0.5rem;
-  --radius-md:  0.75rem;
-  --radius-lg:  1rem;
-  --radius-xl:  1.5rem;
-  --radius-2xl: 2.5rem;
+  /* Border radius */
+  --radius-sm:  0.375rem;
+  --radius-md:  0.5rem;
+  --radius-lg:  0.75rem;
+  --radius-xl:  1rem;
+  --radius-2xl: 1.25rem;
 
-  /* Shadow — Slightly stronger to lift off the light background */
-  --shadow-card:       0 10px 40px -10px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
-  --shadow-card-hover: 0 20px 50px -10px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255, 255, 255, 1);
+  /* Shadow — tinted to primary for brand consistency */
+  --shadow-card:       0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.04);
+  --shadow-card-hover: 0 6px 16px 0 rgb(30 58 95 / 0.12), 0 2px 6px -1px rgb(30 58 95 / 0.07);
 
   /* Motion tokens — restrained, institutional (150–250ms, ease-out) */
   --motion-duration-fast:   150ms;
@@ -106,8 +106,6 @@ body {
   color: var(--color-foreground);
   font-family: var(--font-sans);
   min-height: 100vh;
-  /* Dribbble-style ultra-subtle noise texture overlay for depth (light mode safe) */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
 }
 
 /* ── Focus styles (keyboard nav — pro-rules) ───────────────── */
@@ -166,33 +164,5 @@ body {
 
 /* Stagger delays for sequential sections */
 .animate-section-delay-1 { animation-delay: 80ms;  }
-/* ── Micro-animations for live telemetry feel ──────────────── */
-@keyframes flare-shift {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.1; }
-  50% { transform: translate(-50%, -45%) scale(1.05); opacity: 0.15; }
-}
-
-@keyframes scan-line {
-  0% { transform: translateY(-100%); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(200%); opacity: 0; }
-}
-
-@keyframes log-scroll {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-50%); }
-}
-
-.animate-flare {
-  animation: flare-shift 8s ease-in-out infinite;
-}
-
-.animate-scan {
-  animation: scan-line 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-.animate-log {
-  animation: log-scroll 10s linear infinite;
-}
-
+.animate-section-delay-2 { animation-delay: 160ms; }
+.animate-section-delay-3 { animation-delay: 240ms; }

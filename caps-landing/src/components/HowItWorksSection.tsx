@@ -55,55 +55,55 @@ export function HowItWorksSection() {
   return (
     <section
       aria-labelledby="how-it-works-heading"
-      className="mx-auto max-w-6xl px-[var(--spacing-gutter)] py-32 animate-section animate-section-delay-2 relative z-10"
+      className="mx-auto max-w-6xl px-[var(--spacing-gutter)] py-[var(--spacing-section)] animate-section animate-section-delay-2"
     >
       {/* Heading */}
-      <div className="mb-16 max-w-xl">
+      <div className="mb-12 max-w-xl">
         <h2
           id="how-it-works-heading"
-          className="text-4xl font-extrabold tracking-tight text-[var(--color-foreground)] sm:text-5xl"
+          className="text-2xl font-bold tracking-tight text-[var(--color-foreground)] sm:text-3xl"
         >
           How it works
         </h2>
-        <p className="mt-4 text-lg text-[var(--color-secondary)]">
+        <p className="mt-3 text-[var(--color-muted-foreground)]">
           From card tap to logged record — the full CAPS flow in four steps.
         </p>
       </div>
 
       {/* Steps */}
       <ol
-        className="relative grid gap-12 sm:grid-cols-2 lg:grid-cols-4"
+        className="relative grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
         aria-label="CAPS tap-to-verify flow"
       >
         {steps.map(({ step, icon: Icon, title, description }, index) => (
           <li
             key={step}
-            className="group relative flex flex-col"
+            className="relative flex flex-col"
           >
-            {/* Connector line — glowing Apple Blue */}
+            {/* Connector line — uses border token, hidden on last item */}
             {index < steps.length - 1 && (
               <span
-                className="absolute left-[calc(2rem+1px)] top-8 hidden h-[2px] w-[calc(100%+3rem)] bg-gradient-to-r from-[var(--color-primary)]/20 to-[var(--color-admin)]/5 lg:block"
+                className="absolute left-[calc(1.75rem+1px)] top-7 hidden h-px w-[calc(100%+2rem)] bg-[var(--color-border)] lg:block"
                 aria-hidden="true"
               />
             )}
 
-            {/* Step icon badge — matches bento grid style */}
-            <div className="mb-6 flex items-center gap-4 relative z-10">
+            {/* Step icon badge — decorative (beside visible step title), aria-hidden */}
+            <div className="mb-4 flex items-center gap-3">
               <span
-                className="flex h-16 w-16 shrink-0 items-center justify-center rounded-3xl bg-black/[0.03] shadow-[inset_0_1px_0_rgba(255,255,255,1)] ring-1 ring-black/5
-                  transition-all duration-500 group-hover:bg-[var(--color-primary)]/10 group-hover:ring-[var(--color-primary)]/30 group-hover:shadow-[0_0_20px_rgba(0,102,204,0.15)]"
+                className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-[var(--color-border)] bg-[var(--color-card)]
+                  transition-colors duration-[var(--motion-duration-base)] hover:border-[var(--color-primary)] hover:bg-[var(--color-muted)]"
                 aria-hidden="true"
               >
-                {/* --icon-lg for feature anchors; strokeWidth 1.5 for Apple crispness */}
+                {/* --icon-lg for feature anchors; strokeWidth 2 unified per pro-rules */}
                 <Icon
                   style={{ width: "var(--icon-lg)", height: "var(--icon-lg)" }}
-                  className="text-[var(--color-foreground)]"
-                  strokeWidth={1.5}
+                  className="text-[var(--color-primary)]"
+                  strokeWidth={2}
                 />
               </span>
               <span
-                className="font-mono text-sm font-bold uppercase tracking-[0.2em] text-[var(--color-primary)]"
+                className="font-mono text-xs font-semibold text-[var(--color-muted-foreground)]"
                 aria-label={`Step ${step}`}
               >
                 {step}
@@ -111,10 +111,10 @@ export function HowItWorksSection() {
             </div>
 
             {/* Text */}
-            <h3 className="mb-3 text-xl font-bold text-[var(--color-foreground)]">
+            <h3 className="mb-2 text-base font-semibold text-[var(--color-foreground)]">
               {title}
             </h3>
-            <p className="text-base leading-relaxed text-[var(--color-secondary)]">
+            <p className="text-sm leading-relaxed text-[var(--color-muted-foreground)]">
               {description}
             </p>
           </li>
@@ -123,21 +123,13 @@ export function HowItWorksSection() {
 
       {/* No-payment clarification note */}
       <aside
-        className="mt-24 relative overflow-hidden rounded-[2.5rem] border border-[var(--color-border)] bg-[var(--color-card)] p-10 text-base text-[var(--color-secondary)] shadow-[var(--shadow-card)] backdrop-blur-3xl transition-all duration-500 hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-1 hover:border-black/10"
+        className="mt-12 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-card)] px-5 py-4 text-sm text-[var(--color-muted-foreground)]"
         role="note"
         aria-label="Scope note"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)]/5 to-[var(--color-admin)]/5 pointer-events-none" />
-        <div className="relative z-10 flex items-start sm:items-center gap-5">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[var(--color-primary)]/10 text-[var(--color-primary)] ring-1 ring-[var(--color-primary)]/30 shadow-[0_0_15px_rgba(0,102,204,0.1)]">
-            <ClipboardList className="h-6 w-6" strokeWidth={1.5} />
-          </div>
-          <p className="leading-relaxed">
-            <strong className="text-[var(--color-foreground)] font-bold">Note:</strong>{" "}
-            CAPS is an access and occupancy record system only. It does not handle
-            fees, tolls, or any form of payment or billing.
-          </p>
-        </div>
+        <strong className="text-[var(--color-foreground)]">Note:</strong>{" "}
+        CAPS is an access and occupancy record system only. It does not handle
+        fees, tolls, or any form of payment or billing.
       </aside>
     </section>
   );
