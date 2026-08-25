@@ -92,10 +92,9 @@ export function Hero() {
         {/* Eyebrow */}
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-card)]/80 px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-secondary)] shadow-sm backdrop-blur-md">
           <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-primary)] opacity-75"></span>
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-primary)]"></span>
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-secondary)]/50"></span>
           </span>
-          Live Environment Active
+          Interface Simulation
         </div>
 
         {/* Headline */}
