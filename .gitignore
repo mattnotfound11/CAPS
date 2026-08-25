@@ -41,3 +41,12 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
+
+# Personal Scope Reminders
+landing-page-proposal.md
+
+# AI & Vibe-Coding Artifacts
+ui-ux-pro-max-skill/
+.claude/
+AGENTS.md
+CLAUDE.md
