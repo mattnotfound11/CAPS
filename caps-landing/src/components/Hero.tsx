@@ -37,7 +37,7 @@ export function Hero() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="mx-auto w-full max-w-6xl px-[var(--spacing-gutter)] py-[var(--spacing-section)]"
+      className="mx-auto w-full max-w-6xl px-[var(--spacing-gutter)] py-[var(--spacing-section)] animate-section"
     >
       {/* Eyebrow — mono label, used once only */}
       <p className="mb-4 font-mono text-xs font-medium uppercase tracking-widest text-[var(--color-secondary)]">
@@ -67,16 +67,23 @@ export function Hero() {
         aria-label="System components"
         className="mt-8 flex flex-wrap gap-3"
       >
-        {highlights.map(({ icon: Icon, label, desc }) => (
+        {highlights.map(({ icon: Icon, label, desc }, i) => (
           <li
             key={label}
-            className="flex items-start gap-3 rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-[var(--color-card)] px-4 py-3 shadow-[var(--shadow-card)] sm:max-w-[220px]"
+            className="animate-section flex items-start gap-3 rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-[var(--color-card)] px-4 py-3 shadow-[var(--shadow-card)] sm:max-w-[220px]"
+            style={{ animationDelay: `${(i + 1) * 80}ms` }}
           >
+            {/* Decorative icon — aria-hidden per pro-rules (beside visible text) */}
             <span
               className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-muted)]"
               aria-hidden="true"
             >
-              <Icon className="h-4 w-4 text-[var(--color-primary)]" strokeWidth={2} />
+              {/* strokeWidth unified to --icon-stroke (2) per pro-rules */}
+              <Icon
+                style={{ width: "var(--icon-sm)", height: "var(--icon-sm)" }}
+                className="text-[var(--color-primary)]"
+                strokeWidth={2}
+              />
             </span>
             <span>
               <span className="block text-sm font-semibold text-[var(--color-foreground)]">

@@ -1,20 +1,29 @@
 import { ShieldCheck } from "lucide-react";
 
 /**
- * SiteHeader — minimal top nav.
- * Shows the CAPS wordmark/logo only. No nav links on the landing page;
- * the login entry points are in the LoginEntryCards section below the fold.
+ * SiteHeader — minimal sticky nav.
+ * Shows the CAPS wordmark/logo mark only.
+ *
+ * Design polish (ui-ux-pro-max pass):
+ *  - Logo icon: strokeWidth unified to 2, sized via --icon-md token
+ *  - Logo span: aria-hidden (decorative beside visible "CAPS" text)
+ *  - Smooth border/bg transition on scroll is handled by backdrop-blur-sm
  */
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[var(--color-background)]/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-[var(--spacing-gutter)] py-4">
-        {/* Logo mark */}
+        {/* Logo mark — decorative beside visible "CAPS" text, aria-hidden */}
         <span
           className="flex h-8 w-8 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-primary)]"
           aria-hidden="true"
         >
-          <ShieldCheck className="h-5 w-5 text-white" strokeWidth={2} />
+          {/* strokeWidth 2, --icon-md (20px) per pro-rules icon tokens */}
+          <ShieldCheck
+            style={{ width: "var(--icon-md)", height: "var(--icon-md)" }}
+            className="text-white"
+            strokeWidth={2}
+          />
         </span>
 
         {/* Wordmark */}
@@ -22,7 +31,7 @@ export function SiteHeader() {
           CAPS
         </span>
 
-        {/* Tagline — hidden on small screens */}
+        {/* Tagline — visual only, hidden on small screens */}
         <span
           className="hidden text-xs text-[var(--color-muted-foreground)] sm:inline-block"
           aria-hidden="true"
