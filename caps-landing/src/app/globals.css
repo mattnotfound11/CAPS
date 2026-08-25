@@ -4,28 +4,40 @@
    CAPS Design System Tokens
    Source: ui-ux-pro-max-skill — "Research Lab / University"
    palette merged with Minimalism & Swiss style recommendation.
-   Font: Inter (Google Fonts, variable weight)
+   Font: Inter (single-family, weight variations per role)
    ──────────────────────────────────────────────────────────── */
 @theme inline {
-  /* Typography */
+  /* Typography — Inter single-family system (confirmed by skill) */
   --font-sans: "Inter", system-ui, sans-serif;
   --font-mono: ui-monospace, monospace;
 
-  /* Color palette */
-  --color-background: #F8FAFC;
-  --color-foreground: #0F172A;
+  /* Icon sizing tokens (pro-rules: consistent icon sizes as design tokens) */
+  --icon-sm:  1rem;     /* 16px — inline / decorative */
+  --icon-md:  1.25rem;  /* 20px — UI controls */
+  --icon-lg:  1.5rem;   /* 24px — feature anchors */
+
+  /* Stroke weight token — all icons use this (pro-rules: stroke consistency) */
+  --icon-stroke: 2;
+
+  /* Color palette — Research Lab / University (confirmed best match) */
+  --color-background:      #F8FAFC;
+  --color-foreground:      #0F172A;
 
   --color-primary:         #1E3A5F;   /* institutional navy */
   --color-primary-hover:   #162d4a;
   --color-on-primary:      #FFFFFF;
 
-  --color-secondary:       #2563EB;   /* action blue */
+  --color-secondary:       #2563EB;   /* action blue / eyebrow */
   --color-on-secondary:    #FFFFFF;
 
-  --color-accent:          #0369A1;   /* guard console accent */
+  /* Guard Console: access-control blue */
+  --color-accent:          #0369A1;
+  --color-accent-subtle:   #EFF6FF;   /* was hardcoded #EFF6FF in LoginEntryCards */
   --color-on-accent:       #FFFFFF;
 
-  --color-admin:           #1E3A5F;   /* admin dashboard accent (navy) */
+  /* Admin Dashboard: institutional navy (same as primary) */
+  --color-admin:           #1E3A5F;
+  --color-admin-subtle:    #EEF2F8;   /* was hardcoded #EEF2F8 in LoginEntryCards */
   --color-on-admin:        #FFFFFF;
 
   --color-card:            #FFFFFF;
@@ -40,7 +52,7 @@
   --color-success:         #15803D;
   --color-success-bg:      #DCFCE7;
 
-  /* Spacing scale */
+  /* Spacing scale — 8dp rhythm (pro-rules) */
   --spacing-section: clamp(3.5rem, 8vw, 6rem);
   --spacing-gutter:  clamp(1rem, 4vw, 1.5rem);
 
@@ -51,9 +63,15 @@
   --radius-xl:  1rem;
   --radius-2xl: 1.25rem;
 
-  /* Shadow */
-  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.04);
-  --shadow-card-hover: 0 4px 12px 0 rgb(30 58 95 / 0.12), 0 2px 4px -1px rgb(30 58 95 / 0.06);
+  /* Shadow — tinted to primary for brand consistency */
+  --shadow-card:       0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.04);
+  --shadow-card-hover: 0 6px 16px 0 rgb(30 58 95 / 0.12), 0 2px 6px -1px rgb(30 58 95 / 0.07);
+
+  /* Motion tokens — restrained, institutional (150–250ms, ease-out) */
+  --motion-duration-fast:   150ms;
+  --motion-duration-base:   200ms;
+  --motion-duration-slow:   250ms;
+  --motion-easing:          cubic-bezier(0.16, 1, 0.3, 1); /* ease-out, no bounce */
 }
 
 /* ── Global resets ─────────────────────────────────────────── */
@@ -69,6 +87,7 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Reduced motion — global kill switch (skill requirement) */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -89,14 +108,14 @@ body {
   min-height: 100vh;
 }
 
-/* ── Focus styles (keyboard nav) ───────────────────────────── */
+/* ── Focus styles (keyboard nav — pro-rules) ───────────────── */
 :focus-visible {
   outline: 3px solid var(--color-ring);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
 
-/* ── Skip link ─────────────────────────────────────────────── */
+/* ── Skip link (accessibility) ─────────────────────────────── */
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -110,7 +129,40 @@ body {
   font-weight: 600;
   text-decoration: none;
 }
-
 .skip-link:focus {
   left: 1rem;
 }
+
+/* ── Card hover lift — shared utility ─────────────────────── */
+/* Applied to .card-interactive via className for consistent motion token use */
+.card-interactive {
+  transition:
+    box-shadow var(--motion-duration-base) var(--motion-easing),
+    transform  var(--motion-duration-base) var(--motion-easing);
+}
+.card-interactive:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-3px);
+}
+
+/* ── Scroll fade-in animation ──────────────────────────────── */
+/* Restrained: opacity + slight Y slide, no bounce easing */
+@keyframes fade-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-section {
+  animation: fade-slide-in var(--motion-duration-slow) var(--motion-easing) both;
+}
+
+/* Stagger delays for sequential sections */
+.animate-section-delay-1 { animation-delay: 80ms;  }
+.animate-section-delay-2 { animation-delay: 160ms; }
+.animate-section-delay-3 { animation-delay: 240ms; }
