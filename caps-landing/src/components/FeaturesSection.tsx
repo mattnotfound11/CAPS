@@ -34,41 +34,41 @@ export function FeaturesSection() {
         {features.map((feature, idx) => (
           <div 
             key={feature.id} 
-            className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-24 ${
+            className={`flex flex-col lg:flex-row items-center gap-8 lg:gap-16 ${
               feature.imagePosition === 'right' ? 'lg:flex-row-reverse' : ''
             }`}
           >
             {/* Visual Side */}
-            <div className="flex-1 w-full relative group">
-              <div className="relative overflow-hidden rounded-[var(--radius-2xl)] border border-gray-100 bg-white/80 backdrop-blur-xl p-8 shadow-[var(--shadow-card)] aspect-[4/3] flex items-center justify-center transition-all duration-[var(--motion-duration-base)] group-hover:shadow-[var(--shadow-card-hover)]">
+            <div className="w-full lg:w-1/3 relative group">
+              <div className="relative overflow-hidden rounded-xl border border-gray-100 bg-white/80 backdrop-blur-xl p-4 shadow-[var(--shadow-card)] h-48 flex items-center justify-center transition-all duration-[var(--motion-duration-base)] group-hover:shadow-[var(--shadow-card-hover)]">
                 {/* Subtle dot grid */}
                 <div 
                   className="absolute inset-0 opacity-[0.03] pointer-events-none"
-                  style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, black 1px, transparent 0)', backgroundSize: '24px 24px' }}
+                  style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, black 1px, transparent 0)', backgroundSize: '16px 16px' }}
                 />
                 
-                <div className="relative w-full h-full flex items-center justify-center p-6">
+                <div className="relative w-full h-full flex items-center justify-center p-2">
                   <Image
                     src={feature.image}
                     alt={feature.imageAlt}
-                    width={500}
-                    height={375}
+                    width={200}
+                    height={150}
                     className="object-contain drop-shadow-sm transition-transform duration-[var(--motion-duration-base)] group-hover:scale-[1.02]"
                   />
                 </div>
               </div>
               
               {/* Subtle mesh background for widget */}
-              <div className={`absolute -bottom-10 ${feature.imagePosition === 'left' ? '-left-10' : '-right-10'} h-32 w-32 rounded-full bg-[var(--color-secondary)]/10 blur-[30px] -z-10`} />
-              <div className={`absolute -top-10 ${feature.imagePosition === 'left' ? '-right-10' : '-left-10'} h-32 w-32 rounded-full bg-[var(--color-primary)]/5 blur-[30px] -z-10`} />
+              <div className={`absolute -bottom-6 ${feature.imagePosition === 'left' ? '-left-6' : '-right-6'} h-24 w-24 rounded-full bg-[var(--color-secondary)]/10 blur-[20px] -z-10`} />
+              <div className={`absolute -top-6 ${feature.imagePosition === 'left' ? '-right-6' : '-left-6'} h-24 w-24 rounded-full bg-[var(--color-primary)]/5 blur-[20px] -z-10`} />
             </div>
 
             {/* Text Side */}
-            <div className="flex-1 w-full space-y-4">
-              <h4 className="text-2xl font-bold tracking-tight text-[var(--color-foreground)] sm:text-3xl">
+            <div className="flex-1 w-full space-y-2">
+              <h4 className="text-xl font-bold tracking-tight text-[var(--color-foreground)]">
                 {feature.title}
               </h4>
-              <p className="text-lg leading-relaxed text-[var(--color-muted-foreground)]">
+              <p className="text-base text-[var(--color-muted-foreground)]">
                 {feature.description}
               </p>
             </div>
