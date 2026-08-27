@@ -1,118 +1,117 @@
-import { Cpu, ShieldCheck, BarChart3 } from "lucide-react";
+"use client";
 
-/**
- * Hero — the first thing a visitor sees.
- *
- * ⚠️  OPEN QUESTION (for PM / team review in PR):
- *     Is this landing page meant to be:
- *     (a) a public informational page that explains CAPS to any visitor,
- *         with login as a secondary action below the fold?
- *     (b) a branded login splash screen where login is the primary action
- *         and explanation is minimal or absent?
- *
- *     This component is built toward (a) — the superset.
- *     To collapse to (b), remove the <p> description and the three stat
- *     badges, and let <LoginEntryCards> move up as the first visible element.
- */
-
-const highlights = [
-  {
-    icon: Cpu,
-    label: "RFID-Based Verification",
-    desc: "Campus ID tap → instant gate decision",
-  },
-  {
-    icon: ShieldCheck,
-    label: "Access Recording",
-    desc: "Every entry and exit logged in real time",
-  },
-  {
-    icon: BarChart3,
-    label: "Slot Monitoring",
-    desc: "Live available-space count, always accurate",
-  },
-];
+import { NumberTicker } from "@/components/ui/number-ticker";
+import { useState, useEffect } from "react";
 
 export function Hero() {
+  const [parkedCount, setParkedCount] = useState(342);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setParkedCount((prev) => {
+        // Randomly pick a change: +1, +2, +5, -1, -3
+        const changes = [1, 2, 5, -1, -3];
+        const randomChange = changes[Math.floor(Math.random() * changes.length)];
+        
+        let nextValue = prev + randomChange;
+        
+        // Keep it realistic between 300 and 450
+        if (nextValue < 300) nextValue = 300;
+        if (nextValue > 450) nextValue = 450;
+        
+        return nextValue;
+      });
+    }, 4500); // update every 4.5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section
       aria-labelledby="hero-heading"
-      className="mx-auto w-full max-w-6xl px-[var(--spacing-gutter)] py-[var(--spacing-section)] animate-section"
+      className="relative mx-auto w-full max-w-6xl px-[var(--spacing-gutter)] py-[var(--spacing-section)] animate-section overflow-hidden"
     >
-      {/* Cyber grid background */}
+      {/* Premium subtle background glow */}
       <div 
-        className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"
-        aria-hidden="true"
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-background)] to-transparent" />
-      </div>
-
-      {/* Glowing background flares */}
-      <div 
-        className="absolute left-1/2 top-[-200px] -z-10 h-[800px] w-[1200px] -translate-x-1/2 pointer-events-none"
+        className="absolute left-1/2 top-0 -z-10 h-[600px] w-full max-w-4xl -translate-x-1/2 pointer-events-none opacity-50"
         style={{
-          background: "radial-gradient(ellipse at center, rgba(0, 240, 255, 0.15) 0%, rgba(138, 43, 226, 0.05) 40%, transparent 70%)"
+          background: "radial-gradient(50% 50% at 50% 50%, rgba(217, 4, 41, 0.05) 0%, rgba(212, 175, 55, 0.03) 50%, transparent 100%)"
         }}
       />
 
-      {/* Eyebrow — mono label with typing indicator vibe */}
-      <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-3 py-1 font-mono text-xs font-medium uppercase tracking-widest text-[var(--color-primary)] shadow-[0_0_10px_rgba(0,240,255,0.2)]">
-        <span className="h-2 w-2 rounded-full bg-[var(--color-primary)] animate-pulse" />
-        sys.caps.telemetry.active
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-12">
+        {/* Left Column: Text */}
+        <div className="flex-1 max-w-3xl">
+          {/* Eyebrow */}
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-gray-200/60 bg-white/60 backdrop-blur-md px-4 py-1.5 text-sm font-medium text-[var(--color-primary)] shadow-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-primary)] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-primary)]"></span>
+            </span>
+            System Online
+          </div>
+
+          {/* Headline */}
+          <h1
+            id="hero-heading"
+            className="text-5xl font-extrabold tracking-tight text-[var(--color-foreground)] sm:text-6xl lg:text-7xl leading-[1.1]"
+          >
+            Verified access.
+            <br />
+            <span className="bg-gradient-to-br from-[var(--color-primary)] to-[#FF4D4D] bg-clip-text text-transparent">
+              Total visibility.
+            </span>
+          </h1>
+
+          {/* Sub-headline */}
+          <p className="mt-8 max-w-2xl text-xl leading-relaxed text-[var(--color-muted-foreground)]">
+            The definitive RFID vehicle access and occupancy monitoring system.
+            Instant validation, real-time logging, and absolute control over campus entry points.
+          </p>
+        </div>
+
+        {/* Right Column: Live Telemetry Widget */}
+        <div className="flex-none lg:w-[380px] w-full animate-section" style={{ animationDelay: '100ms' }}>
+          <div className="relative overflow-hidden rounded-[var(--radius-2xl)] border border-gray-100 bg-white/80 backdrop-blur-xl p-8 shadow-[var(--shadow-card)]">
+            {/* Live Indicator */}
+            <div className="flex items-center justify-between mb-6">
+              <span className="text-sm font-bold tracking-wider text-gray-500 uppercase">Live Telemetry</span>
+              <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 border border-green-100">
+                <span className="relative flex h-2 w-2">
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500 animate-blink-status"></span>
+                </span>
+                <span className="text-xs font-semibold text-green-700 uppercase">Live</span>
+              </div>
+            </div>
+
+            {/* Vehicle Count */}
+            <div className="flex items-baseline gap-2 mb-2">
+              <span className="text-6xl font-black text-[var(--color-foreground)] tabular-nums tracking-tight">
+                <NumberTicker value={parkedCount} />
+              </span>
+              <span className="text-xl font-semibold text-gray-400">/ 500</span>
+            </div>
+            
+            <p className="text-sm font-medium text-[var(--color-muted-foreground)]">
+              Vehicles currently parked on campus
+            </p>
+
+            {/* Progress Bar */}
+            <div className="mt-6 h-3 w-full overflow-hidden rounded-full bg-gray-100">
+              <div 
+                className="h-full rounded-full bg-[var(--color-primary)] shadow-[0_0_10px_rgba(153,0,0,0.4)] transition-all duration-1000 ease-out" 
+                style={{ width: `${(parkedCount / 500) * 100}%` }}
+              />
+            </div>
+
+            {/* Subtle mesh background for widget */}
+            <div className="absolute -bottom-10 -right-10 h-32 w-32 rounded-full bg-[var(--color-secondary)]/10 blur-[30px]" />
+            <div className="absolute -top-10 -left-10 h-32 w-32 rounded-full bg-[var(--color-primary)]/5 blur-[30px]" />
+          </div>
+        </div>
       </div>
 
-      {/* Headline */}
-      <h1
-        id="hero-heading"
-        className="max-w-3xl text-4xl font-extrabold leading-tight tracking-tight text-[var(--color-foreground)] sm:text-5xl lg:text-7xl"
-      >
-        Absolute access.
-        <br />
-        <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(0,240,255,0.4)]">
-          Total visibility.
-        </span>
-      </h1>
 
-      {/* Sub-headline */}
-      <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--color-muted-foreground)] font-mono text-sm">
-        &gt; Initializing RFID grid... <br />
-        &gt; CAPS telemetry network online. Validating physical credentials, 
-        logging endpoints, and synchronizing slot vectors in real-time.
-      </p>
-
-      {/* Deployment context pills */}
-      <ul
-        aria-label="System components"
-        className="mt-12 flex flex-wrap gap-4"
-      >
-        {highlights.map(({ icon: Icon, label, desc }, i) => (
-          <li
-            key={label}
-            className="animate-section flex flex-1 items-start gap-4 rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-[var(--color-card)] backdrop-blur-xl px-5 py-4 shadow-[var(--shadow-card)] min-w-[240px] hover:-translate-y-1 hover:shadow-[var(--shadow-card-hover)] hover:border-[var(--color-primary)]/50 transition-all duration-300"
-            style={{ animationDelay: `${(i + 1) * 100}ms` }}
-          >
-            {/* Decorative icon */}
-            <span
-              className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/20 shadow-[0_0_15px_rgba(0,240,255,0.15)]"
-              aria-hidden="true"
-            >
-              <Icon
-                style={{ width: "var(--icon-md)", height: "var(--icon-md)" }}
-                className="text-[var(--color-primary)]"
-                strokeWidth={1.5}
-              />
-            </span>
-            <span>
-              <span className="block font-mono text-sm font-bold text-[var(--color-foreground)] tracking-wide uppercase">
-                {label}
-              </span>
-              <span className="mt-1 block text-sm text-[var(--color-muted-foreground)]">
-                {desc}
-              </span>
-            </span>
-          </li>
-        ))}
-      </ul>
     </section>
   );
 }
