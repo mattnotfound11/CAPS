@@ -70,16 +70,16 @@ export function Hero() {
           </p>
           
           {/* CTA Buttons */}
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-8 flex flex-wrap gap-3">
             <a 
               href="#login" 
-              className="inline-flex h-12 items-center justify-center rounded-[var(--radius-lg)] bg-[var(--color-primary)] px-8 text-base font-semibold text-white shadow-md shadow-[var(--color-primary)]/20 transition-all hover:bg-[var(--color-primary)]/90 hover:-translate-y-0.5"
+              className="inline-flex h-10 items-center justify-center rounded-lg bg-[var(--color-primary)] px-6 text-sm font-semibold text-white shadow-sm transition-all hover:bg-[var(--color-primary)]/90 hover:-translate-y-0.5"
             >
               Log In to Console
             </a>
             <a 
               href="#how-it-works" 
-              className="inline-flex h-12 items-center justify-center rounded-[var(--radius-lg)] border border-gray-200 bg-white px-8 text-base font-semibold text-[var(--color-foreground)] shadow-sm transition-all hover:bg-gray-50 hover:-translate-y-0.5"
+              className="inline-flex h-10 items-center justify-center rounded-lg border border-gray-200 bg-white px-6 text-sm font-semibold text-[var(--color-foreground)] shadow-sm transition-all hover:bg-gray-50 hover:-translate-y-0.5"
             >
               Learn More
             </a>

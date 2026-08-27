@@ -41,7 +41,7 @@ export function SiteHeader() {
         <div className="ml-auto flex items-center">
           <a 
             href="#login" 
-            className="inline-flex h-9 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[var(--color-primary)]/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-primary)] disabled:pointer-events-none disabled:opacity-50"
+            className="inline-flex h-8 items-center justify-center rounded-md bg-[var(--color-primary)] px-3 text-xs font-semibold tracking-wide text-white shadow-sm transition-colors hover:bg-[var(--color-primary)]/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-primary)]"
           >
             Log In
           </a>
