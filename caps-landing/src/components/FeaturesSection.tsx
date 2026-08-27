@@ -29,7 +29,7 @@ const features = [
 
 export function FeaturesSection() {
   return (
-    <section className="relative mx-auto w-full max-w-6xl px-[var(--spacing-gutter)] py-24 overflow-hidden">
+    <section className="relative mx-auto w-full max-w-6xl px-[var(--spacing-gutter)] pb-24 pt-32 lg:pt-48 overflow-hidden">
       <div className="flex flex-col gap-32">
         {features.map((feature, idx) => (
           <div 
