@@ -11,32 +11,41 @@ import { ShieldCheck } from "lucide-react";
  */
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--color-border)]/50 bg-[var(--color-background)]/80 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
+    <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/80 backdrop-blur-xl shadow-sm">
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-[var(--spacing-gutter)] py-4">
         {/* Logo mark */}
         <span
-          className="flex h-9 w-9 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/30 shadow-[0_0_15px_rgba(0,240,255,0.2)]"
+          className="flex h-10 w-10 items-center justify-center rounded-[var(--radius-lg)] bg-[var(--color-primary)] text-white shadow-md shadow-[var(--color-primary)]/20"
           aria-hidden="true"
         >
           <ShieldCheck
             style={{ width: "var(--icon-md)", height: "var(--icon-md)" }}
-            className="text-[var(--color-primary)]"
-            strokeWidth={1.5}
+            strokeWidth={2}
           />
         </span>
 
         {/* Wordmark */}
-        <span className="text-xl font-bold font-mono tracking-widest text-[var(--color-foreground)]">
+        <span className="text-xl font-extrabold tracking-tight text-[var(--color-foreground)]">
           CAPS
         </span>
 
         {/* Tagline */}
         <span
-          className="hidden text-xs font-mono text-[var(--color-primary)]/70 sm:inline-block ml-2 border-l border-[var(--color-border)] pl-4"
+          className="hidden text-sm font-medium text-[var(--color-muted-foreground)] sm:inline-block ml-2 border-l border-gray-200 pl-4"
           aria-hidden="true"
         >
-          [ TELEMETRY NETWORK ]
+          Campus Automated Parking System
         </span>
+
+        {/* Login Button */}
+        <div className="ml-auto flex items-center">
+          <a 
+            href="#login" 
+            className="inline-flex h-9 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[var(--color-primary)]/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-primary)] disabled:pointer-events-none disabled:opacity-50"
+          >
+            Log In
+          </a>
+        </div>
       </div>
     </header>
   );

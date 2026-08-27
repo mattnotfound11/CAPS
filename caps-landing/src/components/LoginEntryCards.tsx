@@ -51,31 +51,26 @@ const entries = [
 export function LoginEntryCards() {
   return (
     <section
+      id="login"
       aria-labelledby="login-heading"
-      className="relative border-t border-[var(--color-border)]/50 bg-[var(--color-muted)]/20 animate-section animate-section-delay-1 overflow-hidden"
+      className="relative bg-gray-50/50 border-t border-gray-100 py-[var(--spacing-section)]"
     >
-      {/* Cyber grid accent overlay */}
-      <div 
-        className="absolute inset-0 opacity-20 pointer-events-none bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:16px_16px]"
-      />
-
-      <div className="relative mx-auto max-w-6xl px-[var(--spacing-gutter)] py-[var(--spacing-section)] z-10">
+      <div className="relative mx-auto max-w-6xl px-[var(--spacing-gutter)] z-10">
         {/* Section heading */}
-        <div className="mb-12 max-w-xl">
+        <div className="mb-16 max-w-2xl text-center mx-auto">
           <h2
             id="login-heading"
-            className="text-3xl font-extrabold tracking-tight text-[var(--color-foreground)] sm:text-4xl"
+            className="text-4xl font-extrabold tracking-tight text-[var(--color-foreground)]"
           >
-            Access Terminals
+            Access Portals
           </h2>
-          <p className="mt-4 font-mono text-sm text-[var(--color-muted-foreground)]">
-            &gt; Select authorization level. <br />
-            &gt; Identity credentials required for all entry points.
+          <p className="mt-4 text-lg text-[var(--color-muted-foreground)]">
+            Select your authorization level to continue. Secure identity credentials are required.
           </p>
         </div>
 
         {/* Cards grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:max-w-4xl">
+        <div className="grid gap-8 sm:grid-cols-2 lg:max-w-4xl mx-auto">
           {entries.map(
             ({
               id,
@@ -84,68 +79,54 @@ export function LoginEntryCards() {
               description,
               href,
               accentVar,
-              accentTextVar,
-              accentSubtleVar,
               icon: Icon,
               cta,
             }) => (
               <article
                 key={id}
-                className="group relative flex flex-col rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-[var(--color-card)] backdrop-blur-xl shadow-[var(--shadow-card)] transition-all duration-300 hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-1 overflow-hidden"
+                className="group relative flex flex-col rounded-[var(--radius-2xl)] bg-white shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 overflow-hidden"
                 aria-label={`${title} login`}
               >
-                {/* Glowing neon top edge */}
-                <div 
-                  className="absolute top-0 left-0 h-1 w-full opacity-50 group-hover:opacity-100 transition-opacity"
-                  style={{ backgroundColor: accentVar, boxShadow: `0 0 10px ${accentVar}` }}
-                />
-
-                <div className="flex flex-col p-8 h-full">
+                <div className="flex flex-col p-10 h-full">
                   {/* Header */}
-                  <div className="mb-6 flex items-start justify-between">
+                  <div className="mb-8 flex items-center justify-between">
                     <span
-                      className="flex h-12 w-12 items-center justify-center rounded-[var(--radius-lg)] bg-black/20 border"
-                      style={{ borderColor: accentVar, color: accentVar, boxShadow: `0 0 15px ${accentSubtleVar}` }}
+                      className="flex h-14 w-14 items-center justify-center rounded-2xl"
+                      style={{ backgroundColor: `${accentVar}15`, color: accentVar }}
                       aria-hidden="true"
                     >
                       <Icon
                         style={{ width: "var(--icon-lg)", height: "var(--icon-lg)" }}
-                        strokeWidth={1.5}
+                        strokeWidth={2}
                       />
                     </span>
-                    <p
-                      className="text-xs font-mono font-semibold uppercase tracking-widest px-2 py-1 rounded bg-black/20 border"
-                      style={{ color: accentVar, borderColor: `${accentVar}33` }}
+                    <span
+                      className="text-xs font-bold tracking-widest px-3 py-1.5 rounded-full uppercase"
+                      style={{ color: accentVar, backgroundColor: `${accentVar}10` }}
                     >
                       {role}
-                    </p>
+                    </span>
                   </div>
 
-                  <h3 className="mb-2 text-2xl font-bold font-mono tracking-tight text-[var(--color-foreground)] uppercase">
+                  <h3 className="mb-3 text-2xl font-bold tracking-tight text-[var(--color-foreground)]">
                     {title}
                   </h3>
                   
-                  <p className="mb-8 text-sm leading-relaxed text-[var(--color-muted-foreground)] flex-1">
+                  <p className="mb-10 text-[15px] leading-relaxed text-[var(--color-muted-foreground)] flex-1">
                     {description}
                   </p>
 
                   {/* CTA button */}
                   <Link
                     href={href}
-                    className="mt-auto inline-flex items-center justify-center gap-2 rounded-[var(--radius-lg)] px-5 py-3 text-sm font-mono font-bold uppercase tracking-wider
-                      transition-all duration-300
-                      hover:brightness-110 active:scale-95"
-                    style={{
-                      backgroundColor: `${accentVar}22`,
-                      color: accentVar,
-                      border: `1px solid ${accentVar}55`,
-                    }}
+                    className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-[15px] font-semibold text-white transition-all duration-300 hover:brightness-110 active:scale-[0.98]"
+                    style={{ backgroundColor: accentVar, boxShadow: `0 4px 14px ${accentVar}40` }}
                     aria-label={`Sign in to the ${title}`}
                   >
                     {cta}
                     <ArrowRight
                       style={{ width: "var(--icon-sm)", height: "var(--icon-sm)" }}
-                      strokeWidth={2}
+                      strokeWidth={2.5}
                       aria-hidden="true"
                       className="transition-transform group-hover:translate-x-1"
                     />

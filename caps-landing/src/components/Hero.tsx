@@ -68,6 +68,22 @@ export function Hero() {
             The definitive RFID vehicle access and occupancy monitoring system.
             Instant validation, real-time logging, and absolute control over campus entry points.
           </p>
+          
+          {/* CTA Buttons */}
+          <div className="mt-10 flex flex-wrap gap-4">
+            <a 
+              href="#login" 
+              className="inline-flex h-12 items-center justify-center rounded-[var(--radius-lg)] bg-[var(--color-primary)] px-8 text-base font-semibold text-white shadow-md shadow-[var(--color-primary)]/20 transition-all hover:bg-[var(--color-primary)]/90 hover:-translate-y-0.5"
+            >
+              Log In to Console
+            </a>
+            <a 
+              href="#how-it-works" 
+              className="inline-flex h-12 items-center justify-center rounded-[var(--radius-lg)] border border-gray-200 bg-white px-8 text-base font-semibold text-[var(--color-foreground)] shadow-sm transition-all hover:bg-gray-50 hover:-translate-y-0.5"
+            >
+              Learn More
+            </a>
+          </div>
         </div>
 
         {/* Right Column: Live Telemetry Widget */}
