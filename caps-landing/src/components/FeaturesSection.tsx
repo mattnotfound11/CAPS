@@ -64,11 +64,11 @@ export function FeaturesSection() {
             </div>
 
             {/* Text Side */}
-            <div className="flex-1 w-full space-y-6">
-              <h2 className="text-3xl font-extrabold tracking-tight text-[var(--color-foreground)] sm:text-4xl lg:text-5xl">
+            <div className="flex-1 w-full space-y-4">
+              <h4 className="text-2xl font-bold tracking-tight text-[var(--color-foreground)] sm:text-3xl">
                 {feature.title}
-              </h2>
-              <p className="text-xl leading-relaxed text-[var(--color-muted-foreground)]">
+              </h4>
+              <p className="text-lg leading-relaxed text-[var(--color-muted-foreground)]">
                 {feature.description}
               </p>
             </div>
