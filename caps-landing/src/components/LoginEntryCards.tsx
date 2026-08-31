@@ -84,7 +84,7 @@ export function LoginEntryCards() {
             }) => (
               <article
                 key={id}
-                className="group relative flex flex-col rounded-[var(--radius-2xl)] bg-white shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 overflow-hidden"
+                className="group relative flex flex-col rounded-[var(--radius-2xl)] bg-white shadow-md border border-gray-200 transition-all duration-300 hover:shadow-xl hover:border-gray-300 hover:-translate-y-1 overflow-hidden"
                 aria-label={`${title} login`}
               >
                 <div className="flex flex-col p-10 h-full">

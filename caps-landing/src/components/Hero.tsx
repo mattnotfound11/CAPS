@@ -29,7 +29,7 @@ export function Hero() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative mx-auto w-full max-w-6xl px-[var(--spacing-gutter)] py-[var(--spacing-section)] animate-section overflow-hidden"
+      className="relative mx-auto w-full max-w-6xl px-[var(--spacing-gutter)] py-24 lg:py-32 flex flex-col justify-center animate-section overflow-hidden"
     >
       {/* Premium subtle background glow */}
       <div 
@@ -42,14 +42,7 @@ export function Hero() {
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-12">
         {/* Left Column: Text */}
         <div className="flex-1 max-w-3xl">
-          {/* Eyebrow */}
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-gray-200/60 bg-white/60 backdrop-blur-md px-4 py-1.5 text-sm font-medium text-[var(--color-primary)] shadow-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-primary)] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-primary)]"></span>
-            </span>
-            System Online
-          </div>
+
 
           {/* Headline */}
           <h1
@@ -65,8 +58,7 @@ export function Hero() {
 
           {/* Sub-headline */}
           <p className="mt-8 max-w-2xl text-xl leading-relaxed text-[var(--color-muted-foreground)]">
-            The definitive RFID vehicle access and occupancy monitoring system.
-            Instant validation, real-time logging, and absolute control over campus entry points.
+            Access control meets live occupancy.
           </p>
           
           {/* CTA Buttons */}

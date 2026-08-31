@@ -3,7 +3,7 @@ import { CreditCard, CheckCircle2, ClipboardList, ParkingSquare } from "lucide-r
 /**
  * HowItWorksSection
  *
- * Visual step-by-step explainer of the RFID tap-to-verify flow.
+ * Visual step-by-step explainer of the RFID/QR tap-to-verify flow.
  * Kept intentionally concise — icons + short labels, not technical prose.
  *
  * Design polish (ui-ux-pro-max pass):
@@ -13,8 +13,8 @@ import { CreditCard, CheckCircle2, ClipboardList, ParkingSquare } from "lucide-r
  *  - Section has animate-section fade-slide-in (restrained motion)
  *  - Step badges use card-interactive hover state
  *
- * CAPS flow:
- *   1. Driver taps campus ID on the RFID reader at the gate.
+ * SPARC flow:
+ *   1. Driver taps campus ID or scans QR on the reader at the gate.
  *   2. System validates the card identity in under a second.
  *   3. Guard Console displays the result (allow / deny).
  *   4. Entry or exit is logged; available slot count updates.
@@ -26,14 +26,14 @@ const steps = [
     icon: CreditCard,
     title: "Tap Campus ID",
     description:
-      "The driver holds their existing campus RFID card to the gate reader — no app, no PIN, no new credential.",
+      "The driver holds their existing campus RFID card or scans a registered QR code at the gate reader.",
   },
   {
     step: "02",
     icon: CheckCircle2,
     title: "Instant Validation",
     description:
-      "CAPS checks the card against the registered vehicle database and returns a decision in under one second.",
+      "SPARC checks the card against the registered vehicle database and returns a decision in under one second.",
   },
   {
     step: "03",
@@ -54,26 +54,27 @@ const steps = [
 export function HowItWorksSection() {
   return (
     <section
+      id="how-it-works"
       aria-labelledby="how-it-works-heading"
       className="mx-auto max-w-6xl px-[var(--spacing-gutter)] py-[var(--spacing-section)] animate-section animate-section-delay-2"
     >
       {/* Heading */}
-      <div className="mb-12 max-w-xl">
+      <div className="mb-16 max-w-2xl">
         <h2
           id="how-it-works-heading"
-          className="text-2xl font-bold font-mono tracking-tight text-[var(--color-foreground)] sm:text-3xl uppercase"
+          className="text-3xl font-extrabold tracking-tight text-[var(--color-foreground)] sm:text-4xl"
         >
-          // Sequence Protocol
+          How it works
         </h2>
-        <p className="mt-3 font-mono text-sm text-[var(--color-muted-foreground)]">
-          &gt; Execution flow for physical access request via RFID hardware.
+        <p className="mt-4 text-lg text-[var(--color-muted-foreground)]">
+          From card tap to logged record — the full SPARC flow in four simple steps.
         </p>
       </div>
 
       {/* Steps */}
       <ol
-        className="relative grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
-        aria-label="CAPS tap-to-verify flow"
+        className="relative grid gap-10 sm:grid-cols-2 lg:grid-cols-4"
+        aria-label="SPARC tap-to-verify flow"
       >
         {steps.map(({ step, icon: Icon, title, description }, index) => (
           <li
@@ -83,37 +84,37 @@ export function HowItWorksSection() {
             {/* Connector line */}
             {index < steps.length - 1 && (
               <span
-                className="absolute left-[calc(1.75rem+1px)] top-7 hidden h-[2px] w-[calc(100%+2rem)] bg-gradient-to-r from-[var(--color-primary)]/40 to-transparent lg:block"
+                className="absolute left-[calc(2rem+1px)] top-8 hidden h-[2px] w-[calc(100%+2.5rem)] bg-gradient-to-r from-gray-200 to-transparent lg:block"
                 aria-hidden="true"
               />
             )}
 
             {/* Step icon badge */}
-            <div className="mb-6 flex items-center gap-3 relative z-10">
+            <div className="mb-6 flex flex-col items-start gap-4 relative z-10">
               <span
-                className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-card)] backdrop-blur-md
-                  transition-all duration-300 group-hover:border-[var(--color-primary)]/60 group-hover:bg-[var(--color-primary)]/10 group-hover:shadow-[0_0_15px_rgba(0,240,255,0.2)]"
+                className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm border border-gray-100
+                  transition-all duration-300 group-hover:scale-105 group-hover:shadow-md group-hover:border-gray-200"
                 aria-hidden="true"
               >
                 <Icon
                   style={{ width: "var(--icon-lg)", height: "var(--icon-lg)" }}
                   className="text-[var(--color-primary)]"
-                  strokeWidth={1.5}
+                  strokeWidth={2}
                 />
               </span>
               <span
-                className="font-mono text-sm font-bold text-[var(--color-primary)] tracking-widest bg-[var(--color-primary)]/10 px-2 py-0.5 rounded border border-[var(--color-primary)]/20"
+                className="text-sm font-bold text-[var(--color-primary)] bg-[var(--color-primary)]/10 px-2.5 py-1 rounded-full"
                 aria-label={`Step ${step}`}
               >
-                {step}
+                Step {step}
               </span>
             </div>
 
             {/* Text */}
-            <h3 className="mb-2 text-lg font-bold font-mono uppercase text-[var(--color-foreground)]">
+            <h3 className="mb-2.5 text-xl font-bold text-[var(--color-foreground)] tracking-tight">
               {title}
             </h3>
-            <p className="text-sm leading-relaxed text-[var(--color-muted-foreground)]">
+            <p className="text-[15px] leading-relaxed text-[var(--color-muted-foreground)]">
               {description}
             </p>
           </li>
@@ -122,13 +123,13 @@ export function HowItWorksSection() {
 
       {/* No-payment clarification note */}
       <aside
-        className="mt-16 relative overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-[var(--color-card)] backdrop-blur-xl px-6 py-5 text-sm text-[var(--color-muted-foreground)] shadow-[var(--shadow-card)]"
+        className="mt-20 relative overflow-hidden rounded-[var(--radius-2xl)] bg-gray-50/80 px-8 py-6 text-[15px] text-[var(--color-muted-foreground)] border border-gray-100"
         role="note"
         aria-label="Scope note"
       >
-        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(6,182,212,0.03)_50%,transparent_75%)] bg-[length:250%_250%] animate-flare pointer-events-none" />
-        <strong className="text-[var(--color-primary)] font-mono uppercase tracking-widest">System Warning:</strong>{" "}
-        CAPS is an access and occupancy telemetry system only. It does not interface with payment gateways or billing modules.
+        <strong className="text-[var(--color-foreground)] font-semibold">Note:</strong>{" "}
+        SPARC is an access and occupancy telemetry system only. It does not handle
+        fees, tolls, or any form of payment or billing.
       </aside>
     </section>
   );

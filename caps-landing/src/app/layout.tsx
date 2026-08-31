@@ -9,9 +9,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "CAPS — Campus Automated Parking System",
+  title: "SPARC — Smart Parking Access and Real-Time Count",
   description:
-    "CAPS is an RFID-based vehicle access recording and parking slot monitoring system for higher education institutions. Tap your campus ID to verify access instantly.",
+    "SPARC is an RFID-based vehicle access recording and parking slot monitoring system for higher education institutions. Tap your campus ID to verify access instantly.",
 };
 
 export default function RootLayout({

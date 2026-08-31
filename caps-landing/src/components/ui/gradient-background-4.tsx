@@ -16,7 +16,7 @@ export function Component() {
   if (!mounted) return null;
 
   return (
-    <div className="absolute inset-x-0 top-0 h-[800px] -z-20 overflow-hidden bg-[var(--color-background)]">
+    <div className="absolute inset-0 -z-20 overflow-hidden bg-[var(--color-background)]">
       {/* 
         We use a combination of radial gradients and CSS animation 
         to create a slow-moving, premium blur effect.

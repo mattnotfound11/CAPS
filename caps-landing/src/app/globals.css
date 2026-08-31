@@ -19,59 +19,66 @@
   /* Stroke weight token */
   --icon-stroke: 1.5; /* Crisper for high-tech look */
 
-  /* Color palette — Cyber / Telemetry Theme */
-  --color-background:      #030712; /* Deep space slate */
-  --color-foreground:      #F8FAFC;
+  /* Color palette — Red, Gold, White Theme */
+  --color-background:      #FFFFFF;
+  --color-foreground:      #111827;
 
-  --color-primary:         #00F0FF; /* Electric Cyan */
-  --color-primary-hover:   #06B6D4;
-  --color-on-primary:      #030712;
+  --color-primary:         #990000; /* University Red */
+  --color-primary-hover:   #B30000;
+  --color-on-primary:      #FFFFFF;
 
-  --color-secondary:       #8A2BE2; /* Neon Purple */
-  --color-on-secondary:    #FFFFFF;
+  --color-secondary:       #D4AF37; /* Metallic Gold */
+  --color-on-secondary:    #111827;
 
-  /* Guard Console */
-  --color-accent:          #10B981; /* Neon Green */
-  --color-accent-subtle:   rgba(16, 185, 129, 0.1);
-  --color-on-accent:       #030712;
+  /* Guard Console - Red Accent */
+  --color-accent:          #990000; /* Red */
+  --color-accent-subtle:   rgba(153, 0, 0, 0.08);
+  --color-on-accent:       #FFFFFF;
 
-  /* Admin Dashboard */
-  --color-admin:           #8A2BE2; /* Neon Purple */
-  --color-admin-subtle:    rgba(138, 43, 226, 0.1);
-  --color-on-admin:        #FFFFFF;
+  /* Admin Dashboard - Gold Accent */
+  --color-admin:           #D4AF37; /* Gold */
+  --color-admin-subtle:    rgba(212, 175, 55, 0.15);
+  --color-on-admin:        #111827;
 
-  --color-card:            rgba(15, 23, 42, 0.6); /* Glassy slate */
-  --color-card-foreground: #F8FAFC;
+  --color-card:            rgba(255, 255, 255, 0.9);
+  --color-card-foreground: #111827;
 
-  --color-muted:           rgba(30, 41, 59, 0.5);
-  --color-muted-foreground:#94A3B8;
+  --color-muted:           #F9FAFB;
+  --color-muted-foreground:#6B7280;
 
-  --color-border:          rgba(0, 240, 255, 0.2); /* Cyan glowing border */
-  --color-ring:            rgba(0, 240, 255, 0.5);
+  --color-border:          #E5E7EB;
+  --color-ring:            rgba(153, 0, 0, 0.3);
 
   --color-success:         #10B981;
-  --color-success-bg:      rgba(16, 185, 129, 0.15);
+  --color-success-bg:      rgba(16, 185, 129, 0.1);
 
   /* Spacing scale */
   --spacing-section: clamp(3.5rem, 8vw, 6rem);
   --spacing-gutter:  clamp(1rem, 4vw, 1.5rem);
 
-  /* Border radius - High tech / sharp */
+  /* Border radius - Clean / structural */
   --radius-sm:  0.25rem;
   --radius-md:  0.5rem;
   --radius-lg:  0.75rem;
   --radius-xl:  1rem;
   --radius-2xl: 1.5rem;
 
-  /* Shadow — Neon glow */
-  --shadow-card:       0 0 20px 0 rgba(0, 240, 255, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  --shadow-card-hover: 0 0 30px 0 rgba(0, 240, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(0, 240, 255, 0.3);
+  /* Shadow — Soft institutional elevation */
+  --shadow-card:       0 4px 20px 0 rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
+  --shadow-card-hover: 0 10px 30px 0 rgba(153, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1), 0 0 0 1px rgba(153, 0, 0, 0.2);
 
   /* Motion tokens */
   --motion-duration-fast:   150ms;
   --motion-duration-base:   200ms;
   --motion-duration-slow:   250ms;
   --motion-easing:          cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Custom Animations */
+  --animate-blink-status: blink-status 1s steps(2, start) infinite;
+  @keyframes blink-status {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
 }
 
 /* ── Global resets ─────────────────────────────────────────── */
@@ -85,6 +92,11 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+}
+
+/* Offset for sticky navigation headers */
+section[id] {
+  scroll-margin-top: 90px;
 }
 
 /* Reduced motion — global kill switch (skill requirement) */
@@ -166,3 +178,4 @@ body {
 .animate-section-delay-1 { animation-delay: 80ms;  }
 .animate-section-delay-2 { animation-delay: 160ms; }
 .animate-section-delay-3 { animation-delay: 240ms; }
+
