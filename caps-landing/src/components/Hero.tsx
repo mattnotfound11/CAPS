@@ -2,6 +2,8 @@
 
 import { NumberTicker } from "@/components/ui/number-ticker";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 export function Hero() {
   const [parkedCount, setParkedCount] = useState(342);
@@ -9,117 +11,168 @@ export function Hero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setParkedCount((prev) => {
-        // Randomly pick a change: +1, +2, +5, -1, -3
         const changes = [1, 2, 5, -1, -3];
         const randomChange = changes[Math.floor(Math.random() * changes.length)];
-        
         let nextValue = prev + randomChange;
-        
-        // Keep it realistic between 300 and 450
         if (nextValue < 300) nextValue = 300;
         if (nextValue > 450) nextValue = 450;
-        
         return nextValue;
       });
-    }, 4500); // update every 4.5 seconds
-
+    }, 4500);
     return () => clearInterval(interval);
   }, []);
+
+  const occupancyPercent = Math.round((parkedCount / 500) * 100);
+
+  // SVG ring math
+  const radius = 56;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference * (1 - occupancyPercent / 100);
 
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative mx-auto w-full max-w-6xl px-[var(--spacing-gutter)] py-24 lg:py-32 flex flex-col justify-center animate-section overflow-hidden"
+      className="relative mx-auto w-full max-w-[1400px] px-8 lg:px-12 pt-32 pb-20 lg:pt-32 lg:pb-24 flex flex-col justify-center min-h-[75vh] overflow-hidden"
     >
-      {/* Premium subtle background glow */}
-      <div 
-        className="absolute left-1/2 top-0 -z-10 h-[600px] w-full max-w-4xl -translate-x-1/2 pointer-events-none opacity-50"
-        style={{
-          background: "radial-gradient(50% 50% at 50% 50%, rgba(217, 4, 41, 0.05) 0%, rgba(212, 175, 55, 0.03) 50%, transparent 100%)"
-        }}
-      />
-
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-12">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-24">
         {/* Left Column: Text */}
-        <div className="flex-1 max-w-3xl">
-
+        <div className="flex-1 max-w-2xl">
+          {/* System tag */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase border border-[var(--color-border)] text-[var(--color-muted-foreground)] bg-white/[0.03] backdrop-blur-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-success)] animate-blink-status" />
+              IoT Smart Parking System
+            </span>
+          </motion.div>
 
           {/* Headline */}
-          <h1
+          <motion.h1
             id="hero-heading"
-            className="text-5xl font-extrabold tracking-tight text-[var(--color-foreground)] sm:text-6xl lg:text-7xl leading-[1.1]"
+            className="mt-8 text-5xl font-extrabold tracking-tight text-[var(--color-foreground)] sm:text-6xl lg:text-7xl leading-[1.08]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
             Verified access.
             <br />
-            <span className="bg-gradient-to-br from-[var(--color-primary)] to-[#FF4D4D] bg-clip-text text-transparent">
+            <span className="text-gradient-red-gold">
               Total visibility.
             </span>
-          </h1>
+          </motion.h1>
 
           {/* Sub-headline */}
-          <p className="mt-8 max-w-2xl text-xl leading-relaxed text-[var(--color-muted-foreground)]">
-            Access control meets live occupancy.
-          </p>
-          
-          {/* CTA Buttons */}
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a 
-              href="#login" 
-              className="inline-flex h-10 items-center justify-center rounded-lg bg-[var(--color-primary)] px-6 text-sm font-semibold text-white shadow-sm transition-all hover:bg-[var(--color-primary)]/90 hover:-translate-y-0.5"
-            >
-              Log In to Console
-            </a>
-            <a 
-              href="#how-it-works" 
-              className="inline-flex h-10 items-center justify-center rounded-lg border border-gray-200 bg-white px-6 text-sm font-semibold text-[var(--color-foreground)] shadow-sm transition-all hover:bg-gray-50 hover:-translate-y-0.5"
-            >
-              Learn More
-            </a>
-          </div>
+          <motion.p
+            className="mt-6 max-w-lg text-lg leading-relaxed text-[var(--color-muted-foreground)]"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+          >
+            RFID-powered access control meets live parking occupancy monitoring.
+            Built for the University of San Agustin.
+          </motion.p>
+
         </div>
 
         {/* Right Column: Live Telemetry Widget */}
-        <div className="flex-none lg:w-[380px] w-full animate-section" style={{ animationDelay: '100ms' }}>
-          <div className="relative overflow-hidden rounded-[var(--radius-2xl)] border border-gray-100 bg-white/80 backdrop-blur-xl p-8 shadow-[var(--shadow-card)]">
+        <motion.div
+          className="flex-none lg:w-[340px] w-full"
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <div className="relative overflow-hidden rounded-2xl glass-card-elevated p-8">
             {/* Live Indicator */}
-            <div className="flex items-center justify-between mb-6">
-              <span className="text-sm font-bold tracking-wider text-gray-500 uppercase">Live Telemetry</span>
-              <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 border border-green-100">
-                <span className="relative flex h-2 w-2">
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500 animate-blink-status"></span>
+            <div className="flex items-center justify-between mb-8">
+              <span className="text-xs font-bold tracking-[0.15em] text-[var(--color-muted-foreground)] uppercase">
+                Live Telemetry
+              </span>
+              <div className="flex items-center gap-2 px-2.5 py-1 rounded-full border border-[var(--color-success)]/20 bg-[var(--color-success-bg)]">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[var(--color-success)] animate-blink-status" />
                 </span>
-                <span className="text-xs font-semibold text-green-700 uppercase">Live</span>
+                <span className="text-[10px] font-bold text-[var(--color-success)] uppercase tracking-widest">
+                  Live
+                </span>
               </div>
             </div>
 
-            {/* Vehicle Count */}
-            <div className="flex items-baseline gap-2 mb-2">
-              <span className="text-6xl font-black text-[var(--color-foreground)] tabular-nums tracking-tight">
-                <NumberTicker value={parkedCount} />
-              </span>
-              <span className="text-xl font-semibold text-gray-400">/ 500</span>
-            </div>
-            
-            <p className="text-sm font-medium text-[var(--color-muted-foreground)]">
-              Vehicles currently parked on campus
-            </p>
+            {/* Circular Progress Ring + Count */}
+            <div className="flex items-center gap-6">
+              <div className="relative flex-shrink-0">
+                <svg width="128" height="128" viewBox="0 0 128 128" className="-rotate-90">
+                  {/* Background ring */}
+                  <circle
+                    cx="64" cy="64" r={radius}
+                    fill="none"
+                    stroke="rgba(255,255,255,0.04)"
+                    strokeWidth="8"
+                  />
+                  {/* Progress ring */}
+                  <circle
+                    cx="64" cy="64" r={radius}
+                    fill="none"
+                    stroke="url(#ring-gradient)"
+                    strokeWidth="8"
+                    strokeLinecap="round"
+                    strokeDasharray={circumference}
+                    strokeDashoffset={strokeDashoffset}
+                    className="transition-all duration-1000 ease-out"
+                  />
+                  <defs>
+                    <linearGradient id="ring-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="var(--color-primary)" />
+                      <stop offset="100%" stopColor="var(--color-secondary)" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                {/* Center text */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <span className="text-2xl font-black text-[var(--color-foreground)] tabular-nums">
+                    {occupancyPercent}%
+                  </span>
+                  <span className="text-[10px] font-medium text-[var(--color-muted-foreground)] uppercase tracking-wider">
+                    Full
+                  </span>
+                </div>
+              </div>
 
-            {/* Progress Bar */}
-            <div className="mt-6 h-3 w-full overflow-hidden rounded-full bg-gray-100">
-              <div 
-                className="h-full rounded-full bg-[var(--color-primary)] shadow-[0_0_10px_rgba(153,0,0,0.4)] transition-all duration-1000 ease-out" 
-                style={{ width: `${(parkedCount / 500) * 100}%` }}
-              />
+              {/* Stats */}
+              <div className="flex flex-col">
+                <span className="text-4xl font-black text-[var(--color-foreground)] tabular-nums tracking-tight">
+                  <NumberTicker value={parkedCount} />
+                </span>
+                <span className="text-sm font-medium text-[var(--color-muted-foreground)] mt-1">
+                  of 500 slots occupied
+                </span>
+              </div>
             </div>
 
-            {/* Subtle mesh background for widget */}
-            <div className="absolute -bottom-10 -right-10 h-32 w-32 rounded-full bg-[var(--color-secondary)]/10 blur-[30px]" />
-            <div className="absolute -top-10 -left-10 h-32 w-32 rounded-full bg-[var(--color-primary)]/5 blur-[30px]" />
+            {/* Subtle inner glow accents */}
+            <div className="absolute -bottom-16 -right-16 h-40 w-40 rounded-full bg-[var(--color-secondary)]/8 blur-[60px]" />
+            <div className="absolute -top-16 -left-16 h-40 w-40 rounded-full bg-[var(--color-primary)]/8 blur-[60px]" />
           </div>
-        </div>
+        </motion.div>
       </div>
 
-
+      {/* Scroll down indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.5 }}
+      >
+        <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-[var(--color-muted-foreground)]">
+          Scroll
+        </span>
+        <ChevronDown
+          className="h-4 w-4 text-[var(--color-muted-foreground)] animate-bounce"
+          strokeWidth={1.5}
+        />
+      </motion.div>
     </section>
   );
 }

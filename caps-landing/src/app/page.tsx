@@ -1,60 +1,75 @@
 /**
  * SPARC Landing Page — root route ( / )
  *
- * ─── OPEN QUESTION FOR TEAM / PM REVIEW ───────────────────────────────────
- * It is not yet confirmed whether this page should be:
- *   (a) A PUBLIC INFORMATIONAL PAGE — explains SPARC to any visitor;
- *       login is a secondary action below the fold (current build).
- *   (b) A BRANDED LOGIN SPLASH SCREEN — login is the primary action;
- *       the explainer content is minimal or removed entirely.
+ * Full public informational page explaining SPARC to any visitor.
+ * Login portals are below the fold as a secondary action.
  *
- * This page is built toward (a) as the safer superset.
- * To collapse to (b): remove <Hero /> and <HowItWorksSection />,
- * and move <LoginEntryCards /> to the top of <main>.
- *
- * Flag this for confirmation in PR review before merging to main.
- * ──────────────────────────────────────────────────────────────────────────
+ * Page flow:
+ *   1. Hero — cinematic intro with live telemetry widget
+ *   2. SubNav — sticky section navigation
+ *   3. Overview — the challenge & solution
+ *   4. Features — bento grid
+ *   5. How It Works — 4-step flow
+ *   6. Login Cards — Guard Console | Admin Dashboard
+ *   7. Tech Stack — what it's built with
+ *   8. Team — proponents & university credit
  */
 
 import { SiteHeader } from "@/components/SiteHeader";
 import { Hero } from "@/components/Hero";
+import { SubNav } from "@/components/SubNav";
 import { OverviewSection } from "@/components/OverviewSection";
 import { FeaturesSection } from "@/components/FeaturesSection";
 import { LoginEntryCards } from "@/components/LoginEntryCards";
 import { HowItWorksSection } from "@/components/HowItWorksSection";
+import { TechStackSection } from "@/components/TechStackSection";
+import { TeamSection } from "@/components/TeamSection";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Component as GradientBackground } from "@/components/ui/gradient-background-4";
-import { SubNav } from "@/components/SubNav";
+import { FloatingTelemetry } from "@/components/FloatingTelemetry";
 
 export default function LandingPage() {
   return (
     <>
       <SiteHeader />
 
-      <main className="flex-1 relative z-10">
-        {/* 1. Hero: what SPARC is and what it does */}
+      <main id="main-content" className="flex-1 relative z-10">
+        {/* 1. Hero with ambient gradient background */}
         <div className="relative w-full overflow-hidden">
           <GradientBackground />
           <Hero />
         </div>
-        
-        {/* Secondary Navigation */}
+
+        {/* 2. Secondary Navigation */}
         <SubNav />
 
-        {/* 2. Overview */}
+        {/* 3. Overview */}
         <OverviewSection />
 
-        {/* 3. Features: split blocks */}
+        {/* Section divider */}
+        <div className="section-divider mx-auto max-w-6xl" />
+
+        {/* 4. Features */}
         <FeaturesSection />
 
-        {/* 4. Login entry points: Guard Console | Admin Dashboard */}
+        {/* Section divider */}
+        <div className="section-divider mx-auto max-w-6xl" />
+
+        {/* 5. How it works */}
+        <HowItWorksSection />
+
+        {/* 6. Access Portals */}
         <LoginEntryCards />
 
-        {/* 5. How it works: tap-to-verify flow explainer */}
-        <HowItWorksSection />
+        {/* 7. Tech Stack */}
+        <TechStackSection />
+
+        {/* 8. Team */}
+        <TeamSection />
       </main>
 
       <SiteFooter />
+      <FloatingTelemetry />
     </>
   );
 }
